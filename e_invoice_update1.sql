@@ -3,15 +3,15 @@ create table Users(
 	display_name varchar(50) not null,
 	users_password varchar(50) not null,
 	users_email text not null,
-	limit_monthly int null,
+	limit_monthly decimal(19,4) null,
 	users_state int not null
 )
 go
 create table Invoice(
 	invoice_id int identity(1,1) primary key,
 	invoice_type varchar(50) not null,
-	invoice_money int not null,
-	invoid_vat int not null,
+	invoice_money decimal(19,4) not null,
+	invoid_vat decimal(19,4) not null,
 	months int null,
 	years int not null,
 	users_id int,
