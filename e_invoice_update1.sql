@@ -15,7 +15,7 @@ create table Invoice(
 	invoice_month int null,
 	invoice_year int not null,
 	user_id int,
-	CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES Users(user_id)
+	CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES Users(user_id)
 )
 go
 create table Admins(
