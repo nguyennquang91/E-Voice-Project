@@ -2,6 +2,9 @@ package com.csc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +21,7 @@ import com.csc.model.UserDTO;
 import com.csc.service.UserService;
 
 @Controller
-
+@RequestMapping("/index")
 public class IndexController {
 
 	@Autowired
@@ -44,7 +47,7 @@ public class IndexController {
 		return new ResponseEntity<ArrayList<UserDTO>>(userServer.getAll(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/home")
     public ModelAndView listUser(ModelAndView model) throws IOException {
         ArrayList<UserDTO> listUser = userServer.getAll();
         model.addObject("listUser", listUser);
@@ -87,4 +90,6 @@ public class IndexController {
  
         return model;
     }
+    
+    
 }
