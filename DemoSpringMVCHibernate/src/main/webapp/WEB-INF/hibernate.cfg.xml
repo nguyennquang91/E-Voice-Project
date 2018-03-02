@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.csc.model" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- JDBC Connection Pool (use the built-in) -->
+				<prop key="hibernate.connection.pool_size">50</prop>
+				<!-- SQL Dialect -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<!-- Echo all executed SQL to stdout -->
+				<prop key="show_sql">true</prop>
+				<prop key="format_sql">true</prop>
+ 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="use_sql_comments">true</prop>
+<!-- 				<prop key="hibernate.default_schema">dbo</prop> -->
+				
+				<!-- manage by hibernate -->
+<!-- 				<prop key="current_session_context_class">thread</prop> -->
+			</props>
+		</property>
+		<!-- maybe use define in here <property name="mappingResources"> <property 
+			name="annotatedClasses" > <list> ... </list> </property> -->
+	</bean>
+</beans>
