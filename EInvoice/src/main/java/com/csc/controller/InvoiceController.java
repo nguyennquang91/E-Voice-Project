@@ -2,7 +2,6 @@ package com.csc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,15 +36,15 @@ public class InvoiceController {
         ArrayList<Invoice> listInvoice = invoiceServer.getAll();
         model.addObject("listInvoice", listInvoice);
         model.setViewName("invoice");
+        System.out.println(model);
         return model;
     }
 	
 	@RequestMapping(value = "/newInvoice", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {
-		model.addObject("monthList", this.getMonthMap());
-		
         Invoice invoice = new Invoice();
         model.addObject("invoice", invoice);
+		model.addObject("monthList", this.getMonthMap());
         model.setViewName("InvoiceForm");
         return model;
     }
