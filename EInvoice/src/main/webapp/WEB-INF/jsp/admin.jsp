@@ -9,13 +9,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User Management Screen</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <div align="center">
         <h1>User List</h1>
-        <form:form action="saveAllUser" method="post" modelAttribute="userList">
+        
         <h3>
-            <input type="submit" value = "Save changes"> 
+            <button id="saveBtn">Save changes</button>
+            <script>
+$(document).ready(function() {
+	$("#saveBtn").on('click', function(){
+		for(var i=0, n=document.forms.length; i<n; i++){
+            var formId = document.forms[i].id;
+            $('#' + formId).trigger('submit');
+        }
+	});
+});
+</script>
         </h3>
         <table border="1">
  
@@ -23,20 +34,25 @@
         	<th>Display name</th>
          	<th>Password</th>
 		 	<th>State</th>
+		 	<th>Action</th>
  
             
-            	<c:forEach items="${userList}" var="user" varStatus="uStatus">
-            		<tr>${user.userId}</tr>
-            		<tr>${user.userDisplayName}</tr>
-            		<tr>${user.userPassword}</tr>
-            		<tr>
-	            		<form:select path="userList[${uStatus.index}].userState">
+            	<c:forEach items="${userList}" var="user">
+            	<tr>
+            	<form:form modelAttribute="user_${user.userId}" method="POST" id="form_${user.userId}" action="admin/saveUser">
+            		<td><form:hidden path="userId"/>${user.userId}</td>
+            		<td><form:hidden path="userDisplayName"/>${user.userDisplayName}</td>
+            		<td><form:hidden path="userPassword"/>${user.userPassword}</td>
+            		<td>
+	            		<form:select path="userState">
 							<form:options items="${stateMap}"/>
 					    </form:select>
-				    </tr>
+				    </td>
+				    <td><input type="submit" value="Save"></td>
+				    </form:form>
+				</tr>
             	</c:forEach>
         </table>
-        </form:form>
     </div>
 </body>
 </html>

@@ -30,6 +30,7 @@ public class UserDAOImpl implements UserDAO {
 		return (ArrayList<User>) getSessionFactory().getCurrentSession().createQuery("from users").list();
 	}
 
+	
 	public void addUser(User user){
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
