@@ -2,46 +2,41 @@ package com.csc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.csc.model.Invoice;
 import com.csc.model.User;
+import com.csc.model.UserListWrapper;
 import com.csc.service.UserService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdmController {
+public class AdminController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value = "")
+	@RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView listUser(ModelAndView model) throws IOException {
-        ArrayList<User> userList = userService.getAll();
+        List<User> userList = userService.getAll();
         
-        model.addObject("userList", userList);
-        for(User u: userList){
-        	model.addObject("user_"+u.getUserId(), u);
-        }
+        UserListWrapper userListWrapper = new UserListWrapper();
+        userListWrapper.setUserList(userList);
+        
+        System.out.println(userListWrapper);
+        model.addObject("userListWrapper", userListWrapper);
+//        for(User u: userList){
+//        	model.addObject("user_"+u.getUserId(), u);
+//        }
         model.addObject("stateMap", this.getUserStateMap());
         model.setViewName("admin");
-        System.out.println(model);
         return model;
     }
 	
@@ -53,6 +48,19 @@ public class AdmController {
         System.out.println("triggered");
         return new ModelAndView("redirect:/admin");
     }
+	
+	@RequestMapping(value = "/saveAllUser", method = RequestMethod.POST)
+	public ModelAndView saveAllUser(@ModelAttribute UserListWrapper userListWrapper){
+		System.out.println(userListWrapper);
+		List<User> userList = userListWrapper.getUserList();
+		
+		for(User u:userList){
+			if (u.getUserId() != 0) {
+	            userService.updateUser(u);
+	        }
+		}
+        return new ModelAndView("redirect:/admin");
+	}
 	
 	private Map<Integer,String> getUserStateMap(){
 		Map<Integer,String> state = new HashMap<Integer,String>();

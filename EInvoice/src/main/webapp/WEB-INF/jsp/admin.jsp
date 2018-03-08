@@ -15,44 +15,29 @@
     <div align="center">
         <h1>User List</h1>
         
-        <h3>
-            <button id="saveBtn">Save changes</button>
-            <script>
-$(document).ready(function() {
-	$("#saveBtn").on('click', function(){
-		for(var i=0, n=document.forms.length; i<n; i++){
-            var formId = document.forms[i].id;
-            $('#' + formId).trigger('submit');
-        }
-	});
-});
-</script>
-        </h3>
+        <form:form modelAttribute="userListWrapper" method="POST" action="admin/saveAllUser">
+        <input type="submit" value="Save">
         <table border="1">
  
             <th>User ID</th>
         	<th>Display name</th>
          	<th>Password</th>
 		 	<th>State</th>
-		 	<th>Action</th>
- 
-            
-            	<c:forEach items="${userList}" var="user">
+            	<c:forEach items="${userListWrapper.userList}" varStatus="uStatus" var="user">
             	<tr>
-            	<form:form modelAttribute="user_${user.userId}" method="POST" id="form_${user.userId}" action="admin/saveUser">
-            		<td><form:hidden path="userId"/>${user.userId}</td>
-            		<td><form:hidden path="userDisplayName"/>${user.userDisplayName}</td>
-            		<td><form:hidden path="userPassword"/>${user.userPassword}</td>
+            	
+            		<td><form:hidden path="userList[${uStatus.index}].userId"/>${user.userId}</td>
+            		<td><form:hidden path="userList[${uStatus.index}].userDisplayName"/>${user.userDisplayName}</td>
+            		<td><form:hidden path="userList[${uStatus.index}].userPassword"/>${user.userPassword}</td>
             		<td>
-	            		<form:select path="userState">
+	            		<form:select path="userList[${uStatus.index}].userState">
 							<form:options items="${stateMap}"/>
 					    </form:select>
 				    </td>
-				    <td><input type="submit" value="Save"></td>
-				    </form:form>
 				</tr>
             	</c:forEach>
         </table>
+        </form:form>
     </div>
 </body>
 </html>
