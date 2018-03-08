@@ -35,7 +35,7 @@ public class InvoiceController {
     public ModelAndView listInvoice(ModelAndView model) throws IOException {
         ArrayList<Invoice> listInvoice = invoiceServer.getAll();
         model.addObject("listInvoice", listInvoice);
-        model.setViewName("InvoiceForm");
+        model.setViewName("invoice");
         return model;
     }
 	

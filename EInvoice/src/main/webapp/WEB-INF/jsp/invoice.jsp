@@ -5,6 +5,7 @@
 <html>
 <head>
 <link href="<c:url value="/resources/css/userStyle.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/nav.css" />" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -22,7 +23,7 @@
 	 <div>
 	  <h1>Manager Invoice</h1>
 		  <button type="button" class="btn btn-secondary" style="margin-bottom: 0.1%;"><a
-		   href="newInvoice" style="margin-bottom: 0.1%;color: aliceblue">+</a></button>
+		   href="newInvoice" style="margin-bottom: 0.1%;color: aliceblue;">+</a></button>
 		 		<select style="float: right">
 					<option>2019</option>
 					<option>2018</option>
