@@ -2,21 +2,21 @@ package com.dxc.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class UserLogin {
+public class Login {
 
 	
 	@NotEmpty
-	private String userid;
+	private String id;
 	
 	@NotEmpty
 	private String password;
 
-	public String getUserid() {
-		return userid;
+	public String getId() {
+		return id;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getPassword() {

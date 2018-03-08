@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dxc.model.User;
-import com.dxc.model.UserLogin;
+import com.dxc.model.Login;
+import com.dxc.service.AdminService;
 import com.dxc.service.UserService;
 
 @Controller
@@ -20,6 +21,9 @@ public class UserController {
 	@Autowired
 	private UserService userServer;
 	
+	@Autowired
+	private AdminService adminServer;
+
 	@RequestMapping(value = "/")
     public String homePage() {
         return "home";
@@ -44,24 +48,28 @@ public class UserController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginPage(ModelAndView model){
-		UserLogin userLogin = new UserLogin();
-		model.addObject("userLogin", userLogin);
+		Login login = new Login();
+		model.addObject("userLogin", login);
 		model.setViewName("login");
 		
 		return model;
 	}
-		
-	@RequestMapping(value="/loginSuccess",method = RequestMethod.POST)
-	public ModelAndView processPage(@ModelAttribute User user, @Valid UserLogin userLogin) {
-		int userExists = userServer.checkLogin(userLogin.getUserid(),userLogin.getPassword());
-		if(userExists != 0){
-			
-			return new ModelAndView("welcome");
-		}
-		else{
-			return new ModelAndView("error");
-		}
-
-	}
 	
+	@RequestMapping(value="/loginUser", method = RequestMethod.POST)
+	public ModelAndView processPageUser(@ModelAttribute @Valid Login loginUser,@Valid Login loginAdmin) {
+		int userExists = userServer.checkLoginUser(loginUser.getId(),loginUser.getPassword());
+		int adminExists = adminServer.checkLoginAdmin(loginAdmin.getId(), loginAdmin.getPassword());
+		
+		if(userExists != 0)
+			return new ModelAndView("welcome");
+		else if(adminExists != 0)
+			return new ModelAndView("admin");
+		else
+			return new ModelAndView("error");
+		
+	}	
+	
+
+	
+		
 }

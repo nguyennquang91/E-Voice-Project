@@ -7,6 +7,6 @@ public interface UserDao {
 
 	public User getUser(int id);
 	public void register(User user);
-	public int checkLogin(String userid, String password);
+	public int checkLoginUser(String id, String password);
 	
 }

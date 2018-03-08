@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login Success</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h2>Welcome User ${loginUser.id}</h2>
-<h3><a href="/LoginAndRegister">Logout</a></h3>
+	<h2>Welcome Admin </h2>
+	<h3><a href="/LoginAndRegister">Logout</a></h3>
 </body>
 </html>

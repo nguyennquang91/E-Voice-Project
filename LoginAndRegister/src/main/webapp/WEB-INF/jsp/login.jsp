@@ -9,14 +9,14 @@
 </head>
 <body>
 	<div align="center">
-		<form:form action="loginSuccess" method="post" modelAttribute="userLogin">
+		<form:form action="loginUser" method="post" modelAttribute="userLogin">
 			<table border="0">
 				<tr>
 					<td colspan="2" align="center"><h2>Login</h2></td>
 				</tr>
 				<tr>
 					<td><b>Id: </b></td>
-					<td><form:input path="userid"/></td>
+					<td><form:input path="id"/></td>
 				</tr>
 				<tr>
 					<td><b>Password: </b></td>

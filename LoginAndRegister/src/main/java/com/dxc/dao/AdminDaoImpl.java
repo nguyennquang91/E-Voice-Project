@@ -5,12 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dxc.model.User;
+import com.dxc.model.Admin;
 
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao {
-
+public class AdminDaoImpl implements AdminDao {
 
 	private SessionFactory sessionFactory;
 
@@ -24,27 +23,22 @@ public class UserDaoImpl implements UserDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public User getUser(int id) {
-		return (User) sessionFactory.getCurrentSession().load(User.class, id);
+	public Admin getAdmin(int id) {
+		return (Admin) sessionFactory.getCurrentSession().load(Admin.class, id);
 	}
 
-	public void register(User user) {
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
-		
-	}
-
-	public int checkLoginUser(String id, String password) {
+	public int checkLoginAdmin(String id, String password) {
 		String loginIdentifierStr = id.substring(0, 1);
 		
-		if(loginIdentifierStr.equals("u")){
+		if(loginIdentifierStr.equals("a")){
 		
 			String loginNumberPartStr = id.substring(1, id.length());
 			int loginNumberPart = Integer.parseInt(loginNumberPartStr);
 		
-			User tempUser = this.getUser(loginNumberPart);
-			System.out.println(tempUser);
-			if(null != tempUser && tempUser.getPassword().equalsIgnoreCase(password)){
-				return tempUser.getId();
+			Admin tempAdmin = this.getAdmin(loginNumberPart);
+			System.out.println(tempAdmin);
+			if(null != tempAdmin && tempAdmin.getPassword().equalsIgnoreCase(password)){
+				return tempAdmin.getId();
 			}
 			else
 				return 0;
@@ -52,15 +46,4 @@ public class UserDaoImpl implements UserDao {
 		else
 			return 0;
 	}
-
-
-
 }
-
-	
-
-	
-
-	
-
-

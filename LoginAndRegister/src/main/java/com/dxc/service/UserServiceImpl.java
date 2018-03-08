@@ -31,9 +31,9 @@ public class UserServiceImpl implements UserService {
 		getUserDao().register(user);
 	}
 
-	public int checkLogin(String userid, String password) {
+	public int checkLoginUser(String id, String password) {
 		 System.out.println("In Service class...Check Login");
-         return userDao.checkLogin(userid, password);
+         return userDao.checkLoginUser(id, password);
 	}
 
 
