@@ -1,6 +1,7 @@
 package com.csc.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 		return getInvoiceDao().getAll();
 	}
 
+	public List<Invoice> getAllByUserId(int userId){
+		return getInvoiceDao().getAllByUserId(userId);
+	}
+	
 	public void addInvoice(Invoice invoice){
 		getInvoiceDao().addInvoice(invoice);
 	}

@@ -3,6 +3,7 @@ package com.csc.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,32 +18,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.csc.model.Invoice;
+import com.csc.model.User;
 import com.csc.service.InvoiceService;
+import com.csc.service.UserService;
 
 @Controller
-
 public class InvoiceController {
 
 	@Autowired
 	InvoiceService invoiceServer;
 	
-	@RequestMapping(value = "/showall", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	public  ResponseEntity<ArrayList<Invoice>> showAllInvoice(){
-		return new ResponseEntity<ArrayList<Invoice>>(invoiceServer.getAll(), HttpStatus.OK);
-	}
+	@Autowired
+	UserService userServer;
 	
 	@RequestMapping(value = "/")
     public ModelAndView listInvoice(ModelAndView model) throws IOException {
-        ArrayList<Invoice> listInvoice = invoiceServer.getAll();
-        model.addObject("listInvoice", listInvoice);
-        model.setViewName("invoice");
-        System.out.println(model);
+//        ArrayList<Invoice> listInvoice = invoiceServer.getAll();
+//        model.addObject("listInvoice", listInvoice);
+        model.setViewName("welcome");
         return model;
     }
 	
 	@RequestMapping(value = "/newInvoice", method = RequestMethod.GET)
-    public ModelAndView newContact(ModelAndView model) {
+    public ModelAndView newContact(ModelAndView model, HttpServletRequest request) {
+    	int userId = Integer.parseInt(request.getParameter("user_id"));
         Invoice invoice = new Invoice();
+        invoice.setUserId(userId);
         model.addObject("invoice", invoice);
 		model.addObject("monthList", this.getMonthMap());
         model.setViewName("InvoiceForm");
@@ -76,6 +77,18 @@ public class InvoiceController {
 		model.addObject("monthList", this.getMonthMap());
  
         return model;
+    }
+    
+    @RequestMapping(value="/getInvoice", method = RequestMethod.GET)
+    public ModelAndView listInvoiceByUserId(HttpServletRequest request){
+    	int userId = Integer.parseInt(request.getParameter("user_id"));
+    	List<Invoice> invoiceList = invoiceServer.getAllByUserId(userId);
+    	User user = userServer.getUser(userId);
+    	ModelAndView model = new ModelAndView("invoice");
+    	model.addObject("listInvoice", invoiceList);
+    	model.addObject("user", user);
+    	model.setViewName("invoice");
+    	return model;
     }
     
     private Map<Integer,String> getMonthMap(){

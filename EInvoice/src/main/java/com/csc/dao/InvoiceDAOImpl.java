@@ -1,7 +1,9 @@
 package com.csc.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,6 +32,14 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 		return (ArrayList<Invoice>) getSessionFactory().getCurrentSession().createQuery("from invoices").list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Invoice> getAllByUserId(int userId){
+		String sqlStr = "from invoices v where v.userId = :user_id";
+		Query query = getSessionFactory().getCurrentSession().createQuery(sqlStr);
+		query.setParameter("user_id", userId);
+		return query.list();
+	}
+	
 	public void addInvoice(Invoice invoice){
 		sessionFactory.getCurrentSession().saveOrUpdate(invoice);
 	}
