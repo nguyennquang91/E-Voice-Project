@@ -29,7 +29,7 @@ public class InvoiceController {
 	
 	@RequestMapping("/register")
 	public String createManual(){
-		return "register";
+		return "userPage";
 	}
 	
 	@RequestMapping(value = "/showall", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")

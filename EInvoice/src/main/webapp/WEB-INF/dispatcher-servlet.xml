@@ -17,6 +17,10 @@
 <!-- 	<mvc:view-controller path="/" view-name="welcome"/> -->
 	<mvc:annotation-driven
 		content-negotiation-manager="contentNegotiationManager" />
+		
+	<mvc:annotation-driven enable-matrix-variables="true"/>
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	<mvc:annotation-driven/> 
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<!-- Turn off working out content type based on URL file extension, should 

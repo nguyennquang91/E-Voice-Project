@@ -21,7 +21,6 @@ import com.csc.model.Invoice;
 import com.csc.service.InvoiceService;
 
 @Controller
-
 public class InvoiceController {
 
 	@Autowired
@@ -36,7 +35,7 @@ public class InvoiceController {
     public ModelAndView listInvoice(ModelAndView model) throws IOException {
         ArrayList<Invoice> listInvoice = invoiceServer.getAll();
         model.addObject("listInvoice", listInvoice);
-        model.setViewName("invoice");
+        model.setViewName("InvoiceForm");
         return model;
     }
 	
@@ -75,7 +74,6 @@ public class InvoiceController {
         ModelAndView model = new ModelAndView("InvoiceForm");
         model.addObject("invoice", invoice);
 		model.addObject("monthList", this.getMonthMap());
- 
         return model;
     }
     
