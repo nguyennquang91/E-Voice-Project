@@ -7,6 +7,7 @@ import com.csc.model.Invoice;
 public interface InvoiceService {
 
 	public ArrayList<Invoice> getAll();
+	public Invoice getSearch(int month);
 	public void addInvoice(Invoice invoice);
 	public void deleteInvoice(int id);
 	public Invoice getInvoice(int id);

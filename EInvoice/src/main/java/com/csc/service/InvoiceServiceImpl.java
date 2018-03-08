@@ -11,7 +11,7 @@ import com.csc.model.Invoice;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
-
+	
 	InvoiceDAO invoiceDao;
 	
 	public InvoiceDAO getInvoiceDao() {
@@ -42,4 +42,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 	public Invoice updateInvoice(Invoice invoice){
 		return getInvoiceDao().updateInvoice(invoice);
 	}
+
+	public Invoice getSearch(int month) {
+		// TODO Auto-generated method stub
+		return getInvoiceDao().getSearch(month);
+	}
+
 }

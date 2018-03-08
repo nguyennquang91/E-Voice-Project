@@ -1,9 +1,14 @@
 package com.csc.dao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.management.Query;
+
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.SqlParameterValue;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +34,7 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 	public ArrayList<Invoice> getAll() {
 		return (ArrayList<Invoice>) getSessionFactory().getCurrentSession().createQuery("from invoices").list();
 	}
-
+	
 	public void addInvoice(Invoice invoice){
 		sessionFactory.getCurrentSession().saveOrUpdate(invoice);
 	}
@@ -39,6 +44,11 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 		if (null != invoice) {
             this.sessionFactory.getCurrentSession().delete(invoice);
         }
+	}
+	public Invoice getSearch(int month){
+		org.hibernate.Query id = getSessionFactory().getCurrentSession().createQuery("select invoice_id from invoices where invoice_month =" + month);
+		Invoice invoice = (Invoice) sessionFactory.getCurrentSession().load(Invoice.class, (Serializable) id);
+		return invoice;
 	}
 	
 	public Invoice getInvoice(int id){

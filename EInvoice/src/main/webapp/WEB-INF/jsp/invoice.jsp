@@ -31,6 +31,7 @@
                 <option>11</option>
                 <option>12</option>
             </select>
+            <a href="searchInvoice?invoice_month=2">search</a>
                 <span>Year</span>
             <select>
                 <option>2016</option>
@@ -48,7 +49,7 @@
          	<th>Month</th>
          	<th>Year</th>
          	<th>Action</th>
- 
+ 		
             <c:forEach var="invoice" items="${listInvoice}">
                 <tr>
  

@@ -40,6 +40,7 @@ public class InvoiceController {
         return model;
     }
 	
+	
 	@RequestMapping(value = "/newInvoice", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {
 		model.addObject("monthList", this.getMonthMap());
@@ -67,6 +68,12 @@ public class InvoiceController {
         invoiceServer.deleteInvoice(invoiceId);
         return new ModelAndView("redirect:/");
     }
+    @RequestMapping(value = "/searchInvoice", method = RequestMethod.GET)
+    public ModelAndView searchInvoice(HttpServletRequest request) {
+        int invoiceMonth = Integer.parseInt(request.getParameter("invoice_month"));
+        invoiceServer.getSearch(invoiceMonth);
+        return new ModelAndView("redirect:/");
+    }
  
     @RequestMapping(value = "/editInvoice", method = RequestMethod.GET)
     public ModelAndView editInvoice(HttpServletRequest request) {
@@ -78,7 +85,7 @@ public class InvoiceController {
  
         return model;
     }
-    
+
     private Map<Integer,String> getMonthMap(){
 		Map<Integer,String> month = new LinkedHashMap<Integer,String>();
 		month.put(1, "January");
