@@ -13,7 +13,7 @@
     <div align="center">
         <h1>Invoice List</h1>
         <h2>
-        	<a>Welcome ${user.userDisplayName}</a>
+        	<a>Welcome ${user.username}</a>
         </h2>
         <h3>
             <a href="newInvoice?user_id=${user.userId}">New Invoice</a>

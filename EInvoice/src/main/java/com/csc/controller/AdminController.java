@@ -18,7 +18,7 @@ import com.csc.model.UserListWrapper;
 import com.csc.service.UserService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/adminMain")
 public class AdminController {
 	@Autowired
 	UserService userService;
@@ -30,11 +30,7 @@ public class AdminController {
         UserListWrapper userListWrapper = new UserListWrapper();
         userListWrapper.setUserList(userList);
         
-        System.out.println(userListWrapper);
         model.addObject("userListWrapper", userListWrapper);
-//        for(User u: userList){
-//        	model.addObject("user_"+u.getUserId(), u);
-//        }
         model.addObject("stateMap", this.getUserStateMap());
         model.setViewName("admin");
         return model;
@@ -51,7 +47,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "/saveAllUser", method = RequestMethod.POST)
 	public ModelAndView saveAllUser(@ModelAttribute UserListWrapper userListWrapper){
-		System.out.println(userListWrapper);
 		List<User> userList = userListWrapper.getUserList();
 		
 		for(User u:userList){

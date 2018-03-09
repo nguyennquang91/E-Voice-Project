@@ -15,7 +15,7 @@
     <div align="center">
         <h1>User List</h1>
         
-        <form:form modelAttribute="userListWrapper" method="POST" action="admin/saveAllUser">
+        <form:form modelAttribute="userListWrapper" method="POST" action="adminMain/saveAllUser">
         <input type="submit" value="Save">
         <table border="1">
  
@@ -27,10 +27,10 @@
             	<tr>
             	
             		<td><form:hidden path="userList[${uStatus.index}].userId"/>${user.userId}</td>
-            		<td><form:hidden path="userList[${uStatus.index}].userDisplayName"/>${user.userDisplayName}</td>
-            		<td><form:hidden path="userList[${uStatus.index}].userPassword"/>${user.userPassword}</td>
+            		<td><form:hidden path="userList[${uStatus.index}].username"/>${user.username}</td>
+            		<td><form:hidden path="userList[${uStatus.index}].password"/>${user.password}</td>
             		<td>
-	            		<form:select path="userList[${uStatus.index}].userState">
+	            		<form:select path="userList[${uStatus.index}].enabled">
 							<form:options items="${stateMap}"/>
 					    </form:select>
 				    </td>

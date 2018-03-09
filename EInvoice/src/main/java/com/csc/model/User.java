@@ -13,15 +13,18 @@ public class User {
 	@Column(name="user_id")
 	private int userId;
 	
-	@Column(name="user_password")
-	private String userPassword;
+	@Column(name="password")
+	private String password;
 	
-	@Column(name = "user_display_name")
-	private String userDisplayName;
+	@Column(name = "username")
+	private String username;
 	
-	@Column(name="user_state")
-	private int userState;
+	@Column(name="enabled")
+	private int enabled;
 
+	@Column(name="expense_limit")
+	private int expenseLimit;
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -30,28 +33,35 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserPassword() {
-		return userPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getUserDisplayName() {
-		return userDisplayName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserDisplayName(String userDisplayName) {
-		this.userDisplayName = userDisplayName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public int getUserState() {
-		return userState;
+	public int getEnabled() {
+		return enabled;
 	}
 
-	public void setUserState(int userState) {
-		this.userState = userState;
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 
+	public int getExpenseLimit() {
+		return expenseLimit;
+	}
+
+	public void setExpenseLimit(int expenseLimit) {
+		this.expenseLimit = expenseLimit;
+	}
 }

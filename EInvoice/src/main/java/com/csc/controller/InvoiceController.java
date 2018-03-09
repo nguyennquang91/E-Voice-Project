@@ -23,6 +23,7 @@ import com.csc.service.InvoiceService;
 import com.csc.service.UserService;
 
 @Controller
+@RequestMapping("/invoice")
 public class InvoiceController {
 
 	@Autowired
