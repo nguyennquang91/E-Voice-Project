@@ -53,7 +53,7 @@
          	<th>Action</th>
  		
             <c:forEach var="invoice" items="${listInvoice}">
-                <tr id="${invoice.invoiceMonth}">
+                <tr class="content">
  
                     <td>${invoice.invoiceId}</td>
                     <td>${invoice.invoiceType}</td>
@@ -72,29 +72,27 @@
 
 </body>
 <script>
-// function filterText()
-// {  
-// 	var rex = new RegExp($('#mySelect').val());
-// 	if(rex == "/all/"){clearFilter()}else{
-// 		$('#'+ ${invoice.invoiceMonth} ).hide();
-// 		$('.content').filter(function() {
-// 		return rex.test($(this).text());
-// 		}).show();
-//         console.log(rex);
-// 	}
-	
-// }
-// function clearFilter()
-// {
-// 	$('#mySelect').val('');
-// 	$('.content').show();
-// }
 
 $(document).ready(function () {
 	 $("#filter").click(function () {
-		 var rex = $('#mySelect :selected').text();
-		 if(rex != #${invoice.invoiceMonth}){}
+		 filterText();
      });
+	 function filterText()
+	 {  
+	 	var rex = new RegExp($('#mySelect').val());
+	 	if(rex == "/all/"){clearFilter()}else{
+	 		$('.content').hide();
+	 		$('.content').filter(function() {
+	 		return rex.test($(this).text());
+	 		}).show();
+	         console.log(rex);
+	         }
+	 }
+	 function clearFilter()
+	 {
+	 	$('#mySelect').val('');
+	 	$('.content').show();
+	 }
 });
 </script>
 </html>
