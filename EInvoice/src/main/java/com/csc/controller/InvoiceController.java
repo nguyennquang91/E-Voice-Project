@@ -68,12 +68,6 @@ public class InvoiceController {
         invoiceServer.deleteInvoice(invoiceId);
         return new ModelAndView("redirect:/");
     }
-    @RequestMapping(value = "/searchInvoice", method = RequestMethod.GET)
-    public ModelAndView searchInvoice(HttpServletRequest request) {
-        int invoiceMonth = Integer.parseInt(request.getParameter("invoice_month"));
-        invoiceServer.getSearch(invoiceMonth);
-        return new ModelAndView("redirect:/");
-    }
  
     @RequestMapping(value = "/editInvoice", method = RequestMethod.GET)
     public ModelAndView editInvoice(HttpServletRequest request) {

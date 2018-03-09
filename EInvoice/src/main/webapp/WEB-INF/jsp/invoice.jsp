@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Invoice Management Screen</title>
 </head>
 <body>
@@ -17,7 +18,8 @@
         </h3>
         <div style="float:right">
             <span>Month</span>
-            <select>
+            <select id='mySelect'>
+            	<option>all</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -31,7 +33,6 @@
                 <option>11</option>
                 <option>12</option>
             </select>
-            <a href="searchInvoice?invoice_month=2">search</a>
                 <span>Year</span>
             <select>
                 <option>2016</option>
@@ -39,6 +40,7 @@
                 <option>2018</option>
                 <option>2019</option>
             </select>
+			<a href="" id="filter">Filter</a>
             </div>
         <table border="1">
  
@@ -51,7 +53,7 @@
          	<th>Action</th>
  		
             <c:forEach var="invoice" items="${listInvoice}">
-                <tr>
+                <tr id="${invoice.invoiceMonth}">
  
                     <td>${invoice.invoiceId}</td>
                     <td>${invoice.invoiceType}</td>
@@ -67,5 +69,32 @@
          </c:forEach>
         </table>
     </div>
+
 </body>
+<script>
+// function filterText()
+// {  
+// 	var rex = new RegExp($('#mySelect').val());
+// 	if(rex == "/all/"){clearFilter()}else{
+// 		$('#'+ ${invoice.invoiceMonth} ).hide();
+// 		$('.content').filter(function() {
+// 		return rex.test($(this).text());
+// 		}).show();
+//         console.log(rex);
+// 	}
+	
+// }
+// function clearFilter()
+// {
+// 	$('#mySelect').val('');
+// 	$('.content').show();
+// }
+
+$(document).ready(function () {
+	 $("#filter").click(function () {
+		 var rex = $('#mySelect :selected').text();
+		 if(rex != #${invoice.invoiceMonth}){}
+     });
+});
+</script>
 </html>

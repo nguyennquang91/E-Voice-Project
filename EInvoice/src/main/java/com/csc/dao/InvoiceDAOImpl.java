@@ -45,11 +45,6 @@ public class InvoiceDAOImpl implements InvoiceDAO {
             this.sessionFactory.getCurrentSession().delete(invoice);
         }
 	}
-	public Invoice getSearch(int month){
-		org.hibernate.Query id = getSessionFactory().getCurrentSession().createQuery("select invoice_id from invoices where invoice_month =" + month);
-		Invoice invoice = (Invoice) sessionFactory.getCurrentSession().load(Invoice.class, (Serializable) id);
-		return invoice;
-	}
 	
 	public Invoice getInvoice(int id){
 		return (Invoice) sessionFactory.getCurrentSession().get(Invoice.class, id);

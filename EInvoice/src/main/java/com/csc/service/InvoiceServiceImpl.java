@@ -43,9 +43,4 @@ public class InvoiceServiceImpl implements InvoiceService {
 		return getInvoiceDao().updateInvoice(invoice);
 	}
 
-	public Invoice getSearch(int month) {
-		// TODO Auto-generated method stub
-		return getInvoiceDao().getSearch(month);
-	}
-
 }
