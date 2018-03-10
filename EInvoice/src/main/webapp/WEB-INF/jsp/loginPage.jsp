@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <html>
-<head><title>Login</title></head>
+<head><title>E-Invoice login</title></head>
 <body>
    <jsp:include page="_menu.jsp" />
     
@@ -31,7 +31,7 @@
             <td><input type='password' name='password' /></td>
          </tr>
          <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
+            <td><input name="submit" type="submit" value="Submit" /></td>
          </tr>
       </table>
   </form>

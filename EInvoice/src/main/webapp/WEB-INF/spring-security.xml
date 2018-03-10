@@ -10,7 +10,6 @@
         <csrf disabled="true"/>
          
         <intercept-url pattern="/" access="permitAll()" />
-        <intercept-url pattern="/welcome" access="permitAll()" />
         <intercept-url pattern="/login" access="permitAll()" />
         <intercept-url pattern="/logout" access="permitAll()" />
  

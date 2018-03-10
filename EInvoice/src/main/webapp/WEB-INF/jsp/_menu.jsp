@@ -2,18 +2,13 @@
  
 <div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
  
-  <a href="${pageContext.request.contextPath}/welcome">Home</a>
+  <a href="${pageContext.request.contextPath}/login">Home</a>
  
   | &nbsp;
   
-   <a href="${pageContext.request.contextPath}/userInfo">User Info</a>
-  
-  | &nbsp;
-  
-  <a href="${pageContext.request.contextPath}/admin">Admin</a>
-  
   <c:if test="${pageContext.request.userPrincipal.name != null}">
   
+  	<span>Welcome : ${pageContext.request.userPrincipal.name}</span>
      | &nbsp;
      <a href="${pageContext.request.contextPath}/logout">Logout</a>
      

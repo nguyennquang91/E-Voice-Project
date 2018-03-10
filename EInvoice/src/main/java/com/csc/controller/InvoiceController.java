@@ -34,8 +34,6 @@ public class InvoiceController {
 	
 	@RequestMapping(value = "/")
     public ModelAndView listInvoice(ModelAndView model) throws IOException {
-//        ArrayList<Invoice> listInvoice = invoiceServer.getAll();
-//        model.addObject("listInvoice", listInvoice);
         model.setViewName("welcome");
         return model;
     }

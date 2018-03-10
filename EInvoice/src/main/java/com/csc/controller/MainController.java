@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
  
-   @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+   @RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
    public String welcomePage(ModelAndView model) {
-       model.addObject("title", "Welcome");
-       model.addObject("message", "This is welcome page!");
-       return "welcomePage";
+       return "loginPage";
    }
  
    @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -22,15 +20,9 @@ public class MainController {
        return "adminPage";
    }
  
-   @RequestMapping(value = "/login", method = RequestMethod.GET)
-   public String loginPage(ModelAndView model ) {
-       return "loginPage";
-   }
- 
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(ModelAndView model) {
-       model.addObject("title", "Logout");
-       return "logoutSuccessfulPage";
+       return "redirect:/";
    }
  
    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
