@@ -14,7 +14,7 @@
         <intercept-url pattern="/logout" access="permitAll()" />
  
  
-        <intercept-url pattern="/userInfo"
+        <intercept-url pattern="/invoice"
             access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/other/**" access="isAuthenticated()" />
@@ -22,7 +22,7 @@
         <access-denied-handler error-page="/403" />
  
         <form-login login-page='/login' login-processing-url="/j_spring_security_check"
-            default-target-url="/userInfo" always-use-default-target="false"
+            default-target-url="/invoice" always-use-default-target="false"
             authentication-failure-url="/login?error=true" username-parameter="username"
             password-parameter="password" />
  

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page session="true"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -13,10 +14,10 @@
     <div align="center">
         <h1>Invoice List</h1>
         <h2>
-        	<a>Welcome ${user.username}</a>
+        	<a>Welcome ${pageContext.request.userPrincipal.name}</a>
         </h2>
         <h3>
-            <a href="newInvoice?user_id=${user.userId}">New Invoice</a>
+            <a href="${pageContext.request.contextPath}/newInvoice?user_id=${user.userId}">New Invoice</a>
         </h3>
         <div style="float:right">
             <span>Month</span>
@@ -54,17 +55,15 @@
  
             <c:forEach var="invoice" items="${listInvoice}">
                 <tr>
- 
                     <td>${invoice.invoiceId}</td>
                     <td>${invoice.invoiceType}</td>
                     <td>${invoice.invoiceMoney}</td>
                     <td>${invoice.invoiceVat}</td>
                     <td>${invoice.invoiceMonth}</td>
                     <td>${invoice.invoiceYear}</td>
-                    <td><a href="editInvoice?invoice_id=${invoice.invoiceId}">Edit</a>
+                    <td><a href="${pageContext.request.contextPath}/editInvoice?invoice_id=${invoice.invoiceId}">Edit</a>
                              <a
-                        href="deleteInvoice?invoice_id=${invoice.invoiceId}">Delete</a></td>
- 
+                        href="${pageContext.request.contextPath}/deleteInvoice?invoice_id=${invoice.invoiceId}">Delete</a></td>
                 </tr>
          </c:forEach>
         </table>

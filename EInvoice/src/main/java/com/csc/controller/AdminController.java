@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.csc.model.User;
 import com.csc.model.UserListWrapper;
+import com.csc.model.UserListWrapperList;
 import com.csc.service.UserService;
 
 @Controller
@@ -30,7 +31,14 @@ public class AdminController {
         UserListWrapper userListWrapper = new UserListWrapper();
         userListWrapper.setUserList(userList);
         
+        List<UserListWrapper> userListWrapperList = new ArrayList<UserListWrapper>();
+        userListWrapperList.add(userListWrapper);
+        
+        UserListWrapperList canvas = new UserListWrapperList();
+        canvas.setUserListWrapperList(userListWrapperList);
+        
         model.addObject("userListWrapper", userListWrapper);
+        model.addObject("userListWrapperList", canvas);
         model.addObject("stateMap", this.getUserStateMap());
         model.setViewName("admin");
         return model;

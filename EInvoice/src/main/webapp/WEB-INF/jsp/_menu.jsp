@@ -8,7 +8,7 @@
   
   <c:if test="${pageContext.request.userPrincipal.name != null}">
   
-  	<span>Welcome : ${pageContext.request.userPrincipal.name}</span>
+  	<span>Hi ${pageContext.request.userPrincipal.name}</span>
      | &nbsp;
      <a href="${pageContext.request.contextPath}/logout">Logout</a>
      

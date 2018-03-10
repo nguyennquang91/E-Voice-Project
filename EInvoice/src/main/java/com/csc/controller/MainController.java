@@ -42,7 +42,7 @@ public class MainController {
            model.addObject("message", "Hi " + principal.getName()
                    + "<br> You do not have permission to access this page!");
        } else {
-           model.addObject("msg",
+           model.addObject("message",
                    "You do not have permission to access this page!");
        }
        return "403Page";
