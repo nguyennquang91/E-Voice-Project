@@ -56,7 +56,7 @@ input, select{
   text-transform: uppercase;
   outline: 0;
   background: #024457;
-  width: 120%;
+  width: 130%;
   border: 0;
   padding: 15px;
   color: #FFFFFF;

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.csc.model.Invoice;
 import com.csc.service.InvoiceService;
+import com.csc.model.CanvasChartData;
+import com.csc.model.InvoiceListWrapper;
 
 @Controller
 public class InvoiceController {
@@ -38,6 +41,26 @@ public class InvoiceController {
         model.setViewName("invoice");
         return model;
     }
+	
+	@RequestMapping(value="/chart", method = RequestMethod.GET)
+	public ModelAndView chartPage() throws IOException {
+        List<Invoice> listInvoice = invoiceServer.getAll();
+        
+        InvoiceListWrapper invoiceListWrapper = new InvoiceListWrapper();
+        invoiceListWrapper.setInvoiceList(listInvoice);
+        
+        List<InvoiceListWrapper> invoiceListWrapperList = new ArrayList<InvoiceListWrapper>();
+        invoiceListWrapperList.add(invoiceListWrapper);
+        
+        CanvasChartData chartData = new CanvasChartData();
+        chartData.setInvoiceListWrapperList(invoiceListWrapperList);
+        
+        ModelAndView model = new ModelAndView("chart");
+        model.addObject("invoiceListWrapper", invoiceListWrapper);
+        model.addObject("chartData", chartData);
+        
+		return model;
+	}
 	
 	@RequestMapping(value = "/newInvoice", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {

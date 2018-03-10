@@ -7,12 +7,13 @@
 <link href="<c:url value="/resources/css/userStyle.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/nav.css" />" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 	 	<!--menu drawer-->
 	<div class="topnav">
 		  <a href="userpage.html">Home</a>
-		  <a href="Chart.html">Chart</a>
+		  <a href="/EInvoice/chart">Chart</a>
 		  <a href="report.html">Report</a>
 		  <a href="index.html" style="float: right;">Logout</a>
 	</div>
@@ -22,7 +23,7 @@
 
 	 <div>
 	  <h1>Manager Invoice</h1>
-		  <button type="button" class="btn btn-secondary" style="margin-bottom: 0.1%;"><a
+		  <button type="button" class="btn btn-secondary" style="margin-bottom: 0.1%;" ><a
 		   href="newInvoice" style="margin-bottom: 0.1%;color: aliceblue;">+</a></button>
 		 		<select style="float: right">
 					<option>2019</option>
@@ -73,9 +74,12 @@
                     <td>${invoice.invoiceVat}</td>
                     <td>${invoice.invoiceMonth}</td>
                     <td>${invoice.invoiceYear}</td>
-                    <td><a href="editInvoice?invoice_id=${invoice.invoiceId}">Edit</a>
-                             <a
-                        href="deleteInvoice?invoice_id=${invoice.invoiceId}">Delete</a></td>
+                    <td >
+<%--                     <a href="editInvoice?invoice_id=${invoice.invoiceId}">Edit</a> --%>
+<%--                     <a href="deleteInvoice?invoice_id=${invoice.invoiceId}">Delete</a> --%>
+							<button  class="btn btn-info" ><a href="editInvoice?invoice_id=${invoice.invoiceId}">Edit</a></button>
+                    		<button  class="btn-danger"><a href="deleteInvoice?invoice_id=${invoice.invoiceId}">Delete</a></button>
+                    </td>
  
                 </tr>
          </c:forEach>

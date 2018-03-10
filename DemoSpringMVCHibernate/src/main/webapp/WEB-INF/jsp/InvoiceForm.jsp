@@ -7,16 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Create/Edit Invoice</title>
-<link href="<c:url value="/resources/css/AddStyle.css" />" rel="stylesheet">
+
 
 </head>
 <style>
 
 </style>
 <body>
-    <div align="center" class="page-form">
+    <div align="center" >
         <h1>Create/Edit Invoice</h1>
-        <form:form action="saveInvoice" method="post" modelAttribute="invoice" class="form">
+        <form:form action="saveInvoice" method="post" modelAttribute="invoice" >
         <table>
             <form:hidden path="invoiceId"/>
             <form:hidden path="invoiceVat"/>

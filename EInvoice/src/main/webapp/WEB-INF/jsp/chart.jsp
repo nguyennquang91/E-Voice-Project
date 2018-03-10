@@ -1,188 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ page session="false"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
+<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- <script src="<c:url value='resources/js/chart.js' />"></script>
+ <script type="text/javascript">
+ window.onload = function () {
+	 var dps = [[]];
+   
+	 var chart = new CanvasJS.Chart("chartContainer", {
+			theme: "light2", 
+			animationEnabled: true,
+			title: {
+				text: "Column Chart from Database"
+			},
+			data: [{
+				type: "column",
+				dataPoints: dps[0]
+			}]
+		});
+    
+    var xValue;
+    var yValue;
+     
+    <c:forEach items="${chartData.invoiceListWrapperList}" var="dataPoints" varStatus="loop">	
+    	<c:forEach items="${dataPoints.invoiceList}" var="dataPoint">
+    		xValue = parseInt("${dataPoint.invoiceMonth}");
+    		yValue = parseInt("${dataPoint.invoiceMoney}");
+    		dps[parseInt("${loop.index}")].push({
+    			x : xValue,
+    			y : yValue,
+    		});		
+    	</c:forEach>	
+    </c:forEach> 
+    
+chart.render();
+ }
+ </script>
 </head>
 <body>
-<div class="container">
+	<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px; text-align: center;'>${error}</div>
 
-	<c:choose>
-		<c:when test="${userForm['new']}">
-			<h1>Add User</h1>
-		</c:when>
-		<c:otherwise>
-			<h1>Update User</h1>
-		</c:otherwise>
-	</c:choose>
-	<br />
+	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 
-	<spring:url value="/users" var="userActionUrl" />
-
-	<form:form class="form-horizontal" method="post"
-                modelAttribute="userForm" action="${userActionUrl}">
-
-		<form:hidden path="id" />
-
-		<spring:bind path="name">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Name</label>
-			<div class="col-sm-10">
-				<form:input path="name" type="text" class="form-control"
-                                id="name" placeholder="Name" />
-				<form:errors path="name" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="email">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Email</label>
-			<div class="col-sm-10">
-				<form:input path="email" class="form-control"
-                                id="email" placeholder="Email" />
-				<form:errors path="email" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="password">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Password</label>
-			<div class="col-sm-10">
-				<form:password path="password" class="form-control"
-                                id="password" placeholder="password" />
-				<form:errors path="password" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="confirmPassword">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">confirm Password</label>
-			<div class="col-sm-10">
-				<form:password path="confirmPassword" class="form-control"
-                                id="password" placeholder="password" />
-				<form:errors path="confirmPassword" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="address">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Address</label>
-			<div class="col-sm-10">
-				<form:textarea path="address" rows="5" class="form-control"
-                                id="address" placeholder="address" />
-				<form:errors path="address" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="newsletter">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Newsletter</label>
-			<div class="col-sm-10">
-				<div class="checkbox">
-				  <label>
-                                     <form:checkbox path="newsletter" id="newsletter" />
-				  </label>
-				     <form:errors path="newsletter" class="control-label" />
-				</div>
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="framework">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Web Frameworks</label>
-			<div class="col-sm-10">
-				<form:checkboxes path="framework" items="${frameworkList}"
-                                 element="label class='checkbox-inline'" />
-				<br />
-				<form:errors path="framework" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="sex">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Sex</label>
-			<div class="col-sm-10">
-				<label class="radio-inline">
-                                  <form:radiobutton path="sex" value="M" /> Male
-				</label>
-                                <label class="radio-inline">
-                                  <form:radiobutton path="sex" value="F" /> Female
-				</label> <br />
-				<form:errors path="sex" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="number">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Number</label>
-			<div class="col-sm-10">
-				<form:radiobuttons path="number" items="${numberList}"
-                                element="label class='radio-inline'" />
-				<br />
-				<form:errors path="number" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="country">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Country</label>
-			<div class="col-sm-5">
-				<form:select path="country" class="form-control">
-					<form:option value="NONE" label="--- Select ---" />
-					<form:options items="${countryList}" />
-				</form:select>
-				<form:errors path="country" class="control-label" />
-			</div>
-			<div class="col-sm-5"></div>
-		  </div>
-		</spring:bind>
-
-		<spring:bind path="skill">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Java Skills</label>
-			<div class="col-sm-5">
-				<form:select path="skill" items="${javaSkillList}"
-                                 multiple="true" size="5" class="form-control" />
-				<form:errors path="skill" class="control-label" />
-			</div>
-			<div class="col-sm-5"></div>
-		  </div>
-		</spring:bind>
-
-		<div class="form-group">
-		  <div class="col-sm-offset-2 col-sm-10">
-			<c:choose>
-			  <c:when test="${userForm['new']}">
-			     <button type="submit" class="btn-lg btn-primary pull-right">Add
-                             </button>
-			  </c:when>
-			  <c:otherwise>
-			     <button type="submit" class="btn-lg btn-primary pull-right">Update
-                             </button>
-			  </c:otherwise>
-			</c:choose>
-		  </div>
-		</div>
-	</form:form>
-
-</div>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
