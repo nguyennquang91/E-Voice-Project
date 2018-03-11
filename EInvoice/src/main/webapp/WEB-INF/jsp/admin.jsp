@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@page session="true"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -13,23 +13,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <div align="center">
-    <c:forEach items="${userListWrapperList.userListWrapperList}" varStatus="uStatus" var="userListWrapper">
-    	<c:forEach items="${userListWrapper.userList}" var="user">
-            	<tr>
-            	
-            		<td>${user.userId}</td>
-            		<td>${user.username}</td>
-            		<td>${user.password}</td>
-            		<td>
-	            		
-				    </td>
-				</tr>
-        </c:forEach>
-   </c:forEach>	
+   <jsp:include page="_menu.jsp" />
         <h1>User List</h1>
         
-        <form:form modelAttribute="userListWrapper" method="POST" action="adminMain/saveAllUser">
+        <form:form modelAttribute="userListWrapper" method="POST" action="admin/saveAllUser">
         <input type="submit" value="Save">
         <table border="1">
  

@@ -11,13 +11,14 @@
 <title>Invoice Management Screen</title>
 </head>
 <body>
+<jsp:include page="_menu.jsp"/>
     <div align="center">
         <h1>Invoice List</h1>
         <h2>
         	<a>Welcome ${pageContext.request.userPrincipal.name}</a>
         </h2>
         <h3>
-            <a href="${pageContext.request.contextPath}/newInvoice?user_id=${user.userId}">New Invoice</a>
+            <a href="${pageContext.request.contextPath}/invoice/newInvoice?user_id=${userId}">New Invoice</a>
         </h3>
         <div style="float:right">
             <span>Month</span>
@@ -61,9 +62,9 @@
                     <td>${invoice.invoiceVat}</td>
                     <td>${invoice.invoiceMonth}</td>
                     <td>${invoice.invoiceYear}</td>
-                    <td><a href="${pageContext.request.contextPath}/editInvoice?invoice_id=${invoice.invoiceId}">Edit</a>
+                    <td><a href="${pageContext.request.contextPath}/invoice/editInvoice?invoice_id=${invoice.invoiceId}">Edit</a>
                              <a
-                        href="${pageContext.request.contextPath}/deleteInvoice?invoice_id=${invoice.invoiceId}">Delete</a></td>
+                        href="${pageContext.request.contextPath}/invoice/deleteInvoice?invoice_id=${invoice.invoiceId}">Delete</a></td>
                 </tr>
          </c:forEach>
         </table>

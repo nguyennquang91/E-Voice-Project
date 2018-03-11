@@ -15,28 +15,13 @@ public class MainController {
        return "loginPage";
    }
  
-   @RequestMapping(value = "/admin", method = RequestMethod.GET)
-   public String adminPage(ModelAndView model) {
-       return "adminPage";
-   }
- 
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(ModelAndView model) {
        return "redirect:/";
    }
  
-   @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-   public String userInfo(ModelAndView model, Principal principal) {
- 
-       String userName = principal.getName();
- 
-       System.out.println("User Name: "+ userName);
- 
-       return "userInfoPage";
-   }
- 
    @RequestMapping(value = "/403", method = RequestMethod.GET)
-   public String accessDenied(ModelAndView model, Principal principal) {
+   public ModelAndView accessDenied(ModelAndView model, Principal principal) {
         
        if (principal != null) {
            model.addObject("message", "Hi " + principal.getName()
@@ -45,6 +30,8 @@ public class MainController {
            model.addObject("message",
                    "You do not have permission to access this page!");
        }
-       return "403Page";
+       
+       model.setViewName("403Page");
+       return model;
    }
 }

@@ -1,6 +1,7 @@
 package com.csc.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,9 +33,17 @@ public class InvoiceController {
 	@Autowired
 	UserService userServer;
 	
-	@RequestMapping(value = "/")
-    public ModelAndView listInvoice(ModelAndView model) throws IOException {
-        model.setViewName("welcome");
+	@RequestMapping(value = "", method = RequestMethod.GET)
+    public ModelAndView listInvoice(ModelAndView model, Principal principal) throws IOException {
+		String username = principal.getName();
+		User user = userServer.getUserByName(username);
+		
+		int userId = user.getUserId();
+    	List<Invoice> invoiceList = invoiceServer.getAllByUserId(userId);
+
+    	model.addObject("listInvoice", invoiceList);
+    	model.addObject("userId", userId);
+        model.setViewName("invoice");
         return model;
     }
 	
@@ -57,14 +66,14 @@ public class InvoiceController {
         } else {
             invoiceServer.updateInvoice(invoice);
         }
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/invoice");
     }
  
     @RequestMapping(value = "/deleteInvoice", method = RequestMethod.GET)
     public ModelAndView deleteInvoice(HttpServletRequest request) {
         int invoiceId = Integer.parseInt(request.getParameter("invoice_id"));
         invoiceServer.deleteInvoice(invoiceId);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/invoice");
     }
  
     @RequestMapping(value = "/editInvoice", method = RequestMethod.GET)
@@ -76,18 +85,6 @@ public class InvoiceController {
 		model.addObject("monthList", this.getMonthMap());
  
         return model;
-    }
-    
-    @RequestMapping(value="/getInvoice", method = RequestMethod.GET)
-    public ModelAndView listInvoiceByUserId(HttpServletRequest request){
-    	int userId = Integer.parseInt(request.getParameter("user_id"));
-    	List<Invoice> invoiceList = invoiceServer.getAllByUserId(userId);
-    	User user = userServer.getUser(userId);
-    	ModelAndView model = new ModelAndView("invoice");
-    	model.addObject("listInvoice", invoiceList);
-    	model.addObject("user", user);
-    	model.setViewName("invoice");
-    	return model;
     }
     
     private Map<Integer,String> getMonthMap(){

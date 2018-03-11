@@ -1,7 +1,9 @@
 package com.csc.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,6 +46,14 @@ public class UserDAOImpl implements UserDAO {
 	
 	public User getUser(int id){
 		return (User) sessionFactory.getCurrentSession().get(User.class, id);
+	}
+	
+	public User getUserByName(String name) {
+		String sqlStr = "select id from users u where u.username = :name";
+		Query query = getSessionFactory().getCurrentSession().createQuery(sqlStr);
+		query.setParameter("name", name);
+		int userId = (Integer) query.uniqueResult();
+		return this.getUser(userId);
 	}
 	
 	public User updateUser(User user){

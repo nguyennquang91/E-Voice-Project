@@ -14,10 +14,9 @@
         <intercept-url pattern="/logout" access="permitAll()" />
  
  
-        <intercept-url pattern="/invoice"
+        <intercept-url pattern="/invoice/**"
             access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
-        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/other/**" access="isAuthenticated()" />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
  
         <access-denied-handler error-page="/403" />
  
