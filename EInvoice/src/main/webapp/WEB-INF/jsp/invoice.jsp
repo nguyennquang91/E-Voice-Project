@@ -11,12 +11,7 @@
 </head>
 <body>
 	 	<!--menu drawer-->
-	<div class="topnav">
-		  <a href="userpage.html">Home</a>
-		  <a href="/EInvoice/chart">Chart</a>
-		  <a href="report.html">Report</a>
-		  <a href="index.html" style="float: right;">Logout</a>
-	</div>
+	
 	
   <!--table Invoice-->
   <section>

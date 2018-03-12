@@ -18,10 +18,10 @@
 			theme: "light2", 
 			animationEnabled: true,
 			title: {
-				text: "Column Chart from Database"
+				text: "Chart Money Invoice"
 			},
 			data: [{
-				type: "column",
+				type: "bar",
 				dataPoints: dps[0]
 			}]
 		});
