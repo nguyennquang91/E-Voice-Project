@@ -38,10 +38,9 @@ public class AdminController {
 	
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public ModelAndView saveUser(@ModelAttribute User user) {
-        if (user.getUserId() != 0) {
+        if (user.getId() != 0) {
             userService.updateUser(user);
         }
-        System.out.println("triggered");
         return new ModelAndView("redirect:/admin");
     }
 	
@@ -49,10 +48,12 @@ public class AdminController {
 	public ModelAndView saveAllUser(@ModelAttribute UserListWrapper userListWrapper){
 		List<User> userList = userListWrapper.getUserList();
 		
-		for(User u:userList){
-			if (u.getUserId() != 0) {
-	            userService.updateUser(u);
-	        }
+		if(!userList.isEmpty()){
+			for(User u:userList){
+				if (u.getId() != 0) {
+		            userService.updateUser(u);
+		        }
+			}
 		}
         return new ModelAndView("redirect:/admin");
 	}

@@ -38,20 +38,16 @@ public class InvoiceController {
 		String username = principal.getName();
 		User user = userServer.getUserByName(username);
 		
-		int userId = user.getUserId();
-    	List<Invoice> invoiceList = invoiceServer.getAllByUserId(userId);
+    	List<Invoice> invoiceList = user.getInvoiceList();
 
     	model.addObject("listInvoice", invoiceList);
-    	model.addObject("userId", userId);
         model.setViewName("invoice");
         return model;
     }
 	
 	@RequestMapping(value = "/newInvoice", method = RequestMethod.GET)
-    public ModelAndView newContact(ModelAndView model, HttpServletRequest request) {
-    	int userId = Integer.parseInt(request.getParameter("user_id"));
+    public ModelAndView newContact(ModelAndView model) {
         Invoice invoice = new Invoice();
-        invoice.setUserId(userId);
         model.addObject("invoice", invoice);
 		model.addObject("monthList", this.getMonthMap());
         model.setViewName("InvoiceForm");
@@ -59,12 +55,20 @@ public class InvoiceController {
     }
 	
 	@RequestMapping(value = "/saveInvoice", method = RequestMethod.POST)
-    public ModelAndView saveInvoice(@ModelAttribute Invoice invoice) {
-        if (invoice.getInvoiceId() == 0) { // if invoice id is 0 then creating the
-            // invoice other updating the invoice
-            invoiceServer.addInvoice(invoice);
-        } else {
-            invoiceServer.updateInvoice(invoice);
+    public ModelAndView saveInvoice(@ModelAttribute Invoice invoice, Principal principal) {
+        if (invoice.getId() != 0) {
+        	String username = principal.getName();
+        	User user = userServer.getUserByName(username);
+        	
+        	invoice.setUser(user);
+        	invoiceServer.updateInvoice(invoice);
+        }
+        else{
+        	String username = principal.getName();
+        	User user = userServer.getUserByName(username);
+        	
+        	invoice.setUser(user);
+        	invoiceServer.addInvoice(invoice);
         }
         return new ModelAndView("redirect:/invoice");
     }

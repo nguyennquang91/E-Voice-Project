@@ -1,91 +1,97 @@
 
 package com.csc.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="invoices")
 public class Invoice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="invoice_id")
-	private int invoiceId;
+	@Column(name="id")
+	private int id;
 	
-	@Column(name = "invoice_type")
-	private String invoiceType;
+	@Column(name = "type")
+	private String type;
 	
-	@Column(name = "invoice_money")
-	private int invoiceMoney;
+	@Column(name = "money")
+	private int money;
 	
-	@Column(name="invoice_vat")
-	private int invoiceVat;
+	@Column(name="vat")
+	private int vat;
 
-	@Column(name="invoice_month")
-	private int invoiceMonth;
+	@Column(name="month")
+	private int month;
 	
-	@Column(name="invoice_year")
-	private int invoiceYear;
+	@Column(name="year")
+	private int year;
 	
-	@Column(name="user_id")
-	private int userId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId")
+	@NotNull
+	private User user;
 
-	public int getInvoiceId() {
-		return invoiceId;
+	public int getId() {
+		return id;
 	}
 
-	public void setInvoiceId(int invoiceId) {
-		this.invoiceId = invoiceId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getInvoiceType() {
-		return invoiceType;
+	public String getType() {
+		return type;
 	}
 
-	public void setInvoiceType(String invoiceType) {
-		this.invoiceType = invoiceType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public int getInvoiceMoney() {
-		return invoiceMoney;
+	public int getMoney() {
+		return money;
 	}
 
-	public void setInvoiceMoney(int invoiceMoney) {
-		this.invoiceMoney = invoiceMoney;
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
-	public int getInvoiceVat() {
-		return invoiceVat;
+	public int getVat() {
+		return vat;
 	}
 
-	public void setInvoiceVat(int invoiceVat) {
-		this.invoiceVat = invoiceVat;
+	public void setVat(int vat) {
+		this.vat = vat;
 	}
 
-	public int getInvoiceMonth() {
-		return invoiceMonth;
+	public int getMonth() {
+		return month;
 	}
 
-	public void setInvoiceMonth(int invoiceMonth) {
-		this.invoiceMonth = invoiceMonth;
+	public void setMonth(int month) {
+		this.month = month;
 	}
 
-	public int getInvoiceYear() {
-		return invoiceYear;
+	public int getYear() {
+		return year;
 	}
 
-	public void setInvoiceYear(int invoiceYear) {
-		this.invoiceYear = invoiceYear;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
 }
