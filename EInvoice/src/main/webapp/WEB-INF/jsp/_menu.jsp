@@ -11,7 +11,7 @@
 	
   	<span>Hi ${pageContext.request.userPrincipal.name}</span>
      | &nbsp;
-     <sec:authorize access="hasRole('ROLE_ADMIN')">
+     <sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
 		<a href="${pageContext.request.contextPath}/admin">Admin</a>
 	 </sec:authorize>
      | &nbsp;

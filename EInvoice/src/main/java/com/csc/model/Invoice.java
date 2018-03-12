@@ -20,6 +20,7 @@ public class Invoice {
 	private int id;
 	
 	@Column(name = "type")
+	@NotNull
 	private String type;
 	
 	@Column(name = "money")
@@ -33,11 +34,10 @@ public class Invoice {
 	
 	@Column(name="year")
 	private int year;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userId")
+
+	@Column(name="userId")
 	@NotNull
-	private User user;
+	private int userId;
 
 	public int getId() {
 		return id;
@@ -87,11 +87,12 @@ public class Invoice {
 		this.year = year;
 	}
 
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
+	
 }

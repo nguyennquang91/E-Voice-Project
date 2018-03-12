@@ -24,10 +24,6 @@ public class UserRole {
 	@Column(name="role")
 	@NotNull
 	private String role;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
 
 	public int getId() {
 		return id;
@@ -52,13 +48,4 @@ public class UserRole {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }

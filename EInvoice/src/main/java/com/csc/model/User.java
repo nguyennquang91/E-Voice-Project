@@ -38,16 +38,6 @@ public class User {
 	@Column(name="expense_limit")
 	private int expenseLimit;
 	
-	@OneToOne(fetch = FetchType.LAZY,
-	            cascade =  CascadeType.ALL,
-	            mappedBy = "user")
-	private UserRole userRole;
-	
-	@OneToMany(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
-            mappedBy = "user")
-    private List<Invoice> invoiceList;
-	
 	public int getId() {
 		return id;
 	}
@@ -62,22 +52,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public UserRole getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
-	}
-
-	public List<Invoice> getInvoiceList() {
-		return invoiceList;
-	}
-
-	public void setInvoiceList(List<Invoice> invoiceList) {
-		this.invoiceList = invoiceList;
 	}
 
 	public String getPassword() {

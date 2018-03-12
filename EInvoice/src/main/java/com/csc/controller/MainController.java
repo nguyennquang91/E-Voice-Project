@@ -2,14 +2,20 @@ package com.csc.controller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
- 
+
+import com.csc.model.UserRole;
+import com.csc.service.UserRoleService;
+
 @Controller
 public class MainController {
- 
+	@Autowired
+	UserRoleService userRoleServer;
+	
    @RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
    public String welcomePage(ModelAndView model) {
        return "loginPage";
@@ -20,6 +26,18 @@ public class MainController {
        return "redirect:/";
    }
  
+   @RequestMapping(value = "/processUser", method = RequestMethod.GET)
+   public String processLogin(ModelAndView model, Principal principal){
+	   String name = principal.getName();
+	   
+	   UserRole userRole = userRoleServer.getUserRoleByName(name);
+	   
+	   if(userRole.getRole().equals("ROLE_ADMIN")){
+		   return "redirect:/admin";
+	   }
+	   return "redirect:/invoice";
+   }
+   
    @RequestMapping(value = "/403", method = RequestMethod.GET)
    public ModelAndView accessDenied(ModelAndView model, Principal principal) {
         

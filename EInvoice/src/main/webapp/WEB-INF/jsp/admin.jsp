@@ -21,15 +21,17 @@
         <table border="1">
  
             <th>User ID</th>
-        	<th>Display name</th>
+        	<th>Username</th>
          	<th>Password</th>
+         	<th>Email</th>
 		 	<th>State</th>
             	<c:forEach items="${userListWrapper.userList}" varStatus="uStatus" var="user">
             	<tr>
             	
-            		<td><form:hidden path="userList[${uStatus.index}].userId"/>${user.userId}</td>
+            		<td><form:hidden path="userList[${uStatus.index}].id"/>${user.id}</td>
             		<td><form:hidden path="userList[${uStatus.index}].username"/>${user.username}</td>
             		<td><form:hidden path="userList[${uStatus.index}].password"/>${user.password}</td>
+            		<td><form:hidden path="userList[${uStatus.index}].email"/>${user.email}</td>
             		<td>
 	            		<form:select path="userList[${uStatus.index}].enabled">
 							<form:options items="${stateMap}"/>

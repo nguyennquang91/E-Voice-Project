@@ -15,27 +15,33 @@
         <h1>Create/Edit Invoice</h1>
         <form:form action="saveInvoice" method="post" modelAttribute="invoice">
         <table>
-            <form:hidden path="invoiceId"/>
-            <form:hidden path="invoiceVat"/>
+            <form:hidden path="id"/>
             <form:hidden path="userId"/>
+            <form:hidden path="vat"/>
             <tr>
                 <td>Type:</td>
-                <td><form:input path="invoiceType" /></td>
+                <td><form:select path="type">
+					  <form:options items="${typeList}"/>
+				     </form:select>
+				</td>
             </tr>
             <tr>
                 <td>Money:</td>
-                <td><form:input path="invoiceMoney" /></td>
+                <td><form:input path="money" required="required"/></td>
             </tr>
             <tr>
             	<td>Month</td>
-            	<td><form:select path="invoiceMonth">
+            	<td><form:select path="month">
 					  <form:options items="${monthList}"/>
 				     </form:select>
 				</td>
             </tr>
             <tr>
             	<td>Year</td>
-            	<td><form:input path="invoiceYear" /></td>
+            	<td><form:select path="year">
+					  <form:options items="${yearList}"/>
+				     </form:select>
+				</td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Save"></td>

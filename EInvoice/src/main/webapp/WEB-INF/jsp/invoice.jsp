@@ -15,10 +15,11 @@
     <div align="center">
         <h1>Invoice List</h1>
         <h2>
-        	<a>Welcome ${pageContext.request.userPrincipal.name}</a>
+        	<a>Welcome ${data[1]}</a>
+        	<c:out value="${monthList[1]}"/>
         </h2>
         <h3>
-            <a href="${pageContext.request.contextPath}/invoice/newInvoice?user_id=${userId}">New Invoice</a>
+            <a href="${pageContext.request.contextPath}/invoice/newInvoice">New Invoice</a>
         </h3>
         <div style="float:right">
             <span>Month</span>
@@ -56,15 +57,18 @@
  
             <c:forEach var="invoice" items="${listInvoice}">
                 <tr>
-                    <td>${invoice.invoiceId}</td>
-                    <td>${invoice.invoiceType}</td>
-                    <td>${invoice.invoiceMoney}</td>
-                    <td>${invoice.invoiceVat}</td>
-                    <td>${invoice.invoiceMonth}</td>
-                    <td>${invoice.invoiceYear}</td>
-                    <td><a href="${pageContext.request.contextPath}/invoice/editInvoice?invoice_id=${invoice.invoiceId}">Edit</a>
+                    <td>${invoice.id}</td>
+                    <td>
+                    	<c:set var="monthKey" value="${invoice.type}"/> 
+                    	<c:out value="${typeList[monthKey]}"/>
+                    </td>
+                    <td>${invoice.money}</td>
+                    <td>${invoice.vat}</td>
+                    <td>${invoice.month}</td>
+                    <td>${invoice.year}</td>
+                    <td><a href="${pageContext.request.contextPath}/invoice/editInvoice?invoice_id=${invoice.id}">Edit</a>
                              <a
-                        href="${pageContext.request.contextPath}/invoice/deleteInvoice?invoice_id=${invoice.invoiceId}">Delete</a></td>
+                        href="${pageContext.request.contextPath}/invoice/deleteInvoice?invoice_id=${invoice.id}">Delete</a></td>
                 </tr>
          </c:forEach>
         </table>

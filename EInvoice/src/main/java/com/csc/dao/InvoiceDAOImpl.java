@@ -25,7 +25,6 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Invoice> getAll() {
