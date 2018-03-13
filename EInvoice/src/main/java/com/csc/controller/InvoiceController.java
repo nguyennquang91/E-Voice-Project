@@ -80,20 +80,20 @@ public class InvoiceController {
         return model;
     }
 
-    private Map<Integer,String> getMonthMap(){
-		Map<Integer,String> month = new LinkedHashMap<Integer,String>();
-		month.put(1, "January");
-		month.put(2, "February");
-		month.put(3, "March");
-		month.put(4, "April");
-		month.put(5, "May");
-		month.put(6, "June");
-		month.put(7, "July");
-		month.put(8, "August");
-		month.put(9, "September");
-		month.put(10, "October");
-		month.put(11, "November");
-		month.put(12, "December");
+    private Map<String,String> getMonthMap(){
+		Map<String,String> month = new LinkedHashMap<String,String>();
+		month.put("January", "January");
+		month.put("February", "February");
+		month.put("March", "March");
+		month.put("April", "April");
+		month.put("May", "May");
+		month.put("June", "June");
+		month.put("July", "July");
+		month.put("August", "August");
+		month.put("September", "September");
+		month.put("October", "October");
+		month.put("November", "November");
+		month.put("December", "December");
 		
 		return month;
     }

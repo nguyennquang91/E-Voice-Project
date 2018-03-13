@@ -24,7 +24,7 @@ public class Invoice {
 	private int invoiceVat;
 
 	@Column(name="invoice_month")
-	private int invoiceMonth;
+	private String invoiceMonth;
 	
 	@Column(name="invoice_year")
 	private int invoiceYear;
@@ -64,11 +64,11 @@ public class Invoice {
 		this.invoiceVat = invoiceVat;
 	}
 
-	public int getInvoiceMonth() {
+	public String getInvoiceMonth() {
 		return invoiceMonth;
 	}
 
-	public void setInvoiceMonth(int invoiceMonth) {
+	public void setInvoiceMonth(String invoiceMonth) {
 		this.invoiceMonth = invoiceMonth;
 	}
 
@@ -87,5 +87,6 @@ public class Invoice {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	
 }

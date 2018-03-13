@@ -21,18 +21,18 @@
             <span>Month</span>
             <select id='mySelect'>
             	<option>all</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
             </select>
             <button id="btn">Search</button>
                 <span>Year</span>
@@ -65,7 +65,7 @@
                     <td>${invoice.invoiceType}</td>
                     <td>${invoice.invoiceMoney}</td>
                     <td>${invoice.invoiceVat}</td>
-                    <td id="mnt">${invoice.invoiceMonth}</td>
+                    <td>${invoice.invoiceMonth}</td>
                     <td>${invoice.invoiceYear}</td>
                     <td><a href="editInvoice?invoice_id=${invoice.invoiceId}">Edit</a>
                              <a
