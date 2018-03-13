@@ -4,13 +4,12 @@ package com.csc.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToOne;
 
 @Entity(name="invoices")
 public class Invoice {
@@ -19,25 +18,35 @@ public class Invoice {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name = "type")
-	@NotNull
-	private String type;
-	
 	@Column(name = "money")
 	private int money;
 	
 	@Column(name="vat")
 	private int vat;
 
-	@Column(name="month")
-	private int month;
+	@OneToOne
+	@JoinColumn(name="type_id")
+	private Type type;
 	
-	@Column(name="year")
-	private int year;
+	@OneToOne
+	@JoinColumn(name="month_id")
+	private Month month;
+	
+	@OneToOne
+	@JoinColumn(name="year_id")
+	private Year year;
 
-	@Column(name="userId")
-	@NotNull
-	private int userId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public int getId() {
 		return id;
@@ -45,14 +54,6 @@ public class Invoice {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public int getMoney() {
@@ -71,28 +72,27 @@ public class Invoice {
 		this.vat = vat;
 	}
 
-	public int getMonth() {
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public Month getMonth() {
 		return month;
 	}
 
-	public void setMonth(int month) {
+	public void setMonth(Month month) {
 		this.month = month;
 	}
 
-	public int getYear() {
+	public Year getYear() {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(Year year) {
 		this.year = year;
 	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	
 }

@@ -33,7 +33,7 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Invoice> getAllByUserId(int userId){
-		String sqlStr = "from invoices v where v.userId = :user_id";
+		String sqlStr = "from invoices v where v.user.id = :user_id";
 		Query query = getSessionFactory().getCurrentSession().createQuery(sqlStr);
 		query.setParameter("user_id", userId);
 		return query.list();

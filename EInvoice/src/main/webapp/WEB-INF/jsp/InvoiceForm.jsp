@@ -16,7 +16,7 @@
         <form:form action="saveInvoice" method="post" modelAttribute="invoice">
         <table>
             <form:hidden path="id"/>
-            <form:hidden path="userId"/>
+            <form:hidden path="user"/>
             <form:hidden path="vat"/>
             <tr>
                 <td>Type:</td>

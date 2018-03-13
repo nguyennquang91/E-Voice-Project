@@ -15,36 +15,11 @@
     <div align="center">
         <h1>Invoice List</h1>
         <h2>
-        	<a>Welcome ${data[1]}</a>
-        	<c:out value="${monthList[1]}"/>
+        	<a>Welcome </a>
         </h2>
         <h3>
             <a href="${pageContext.request.contextPath}/invoice/newInvoice">New Invoice</a>
         </h3>
-        <div style="float:right">
-            <span>Month</span>
-            <select>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-            </select>
-                <span>Year</span>
-            <select>
-                <option>2016</option>
-                <option>2017</option>
-                <option>2018</option>
-                <option>2019</option>
-            </select>
-            </div>
         <table border="1">
  
             <th>ID</th>
@@ -58,17 +33,13 @@
             <c:forEach var="invoice" items="${listInvoice}">
                 <tr>
                     <td>${invoice.id}</td>
-                    <td>
-                    	<c:set var="monthKey" value="${invoice.type}"/> 
-                    	<c:out value="${typeList[monthKey]}"/>
-                    </td>
+                    <td>${invoice.type.name}</td>
                     <td>${invoice.money}</td>
                     <td>${invoice.vat}</td>
-                    <td>${invoice.month}</td>
-                    <td>${invoice.year}</td>
+                    <td>${invoice.month.name}</td>
+                    <td>${invoice.year.value}</td>
                     <td><a href="${pageContext.request.contextPath}/invoice/editInvoice?invoice_id=${invoice.id}">Edit</a>
-                             <a
-                        href="${pageContext.request.contextPath}/invoice/deleteInvoice?invoice_id=${invoice.id}">Delete</a></td>
+                        <a href="${pageContext.request.contextPath}/invoice/deleteInvoice?invoice_id=${invoice.id}">Delete</a></td>
                 </tr>
          </c:forEach>
         </table>

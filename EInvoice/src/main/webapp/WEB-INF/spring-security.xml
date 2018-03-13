@@ -12,9 +12,9 @@
         <intercept-url pattern="/" access="permitAll()" />
         <intercept-url pattern="/login" access="permitAll()" />
         <intercept-url pattern="/logout" access="permitAll()" />
+        <intercept-url pattern="/register" access="permitAll()" />
  
- 
-        <intercept-url pattern="/invoice/**"
+        <intercept-url pattern="/user/**"
             access="hasRole('ROLE_USER') and isAuthenticated()" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN') and isAuthenticated()" />
  

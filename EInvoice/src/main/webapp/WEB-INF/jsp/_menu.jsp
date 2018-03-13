@@ -11,8 +11,14 @@
 	
   	<span>Hi ${pageContext.request.userPrincipal.name}</span>
      | &nbsp;
+	<a href="${pageContext.request.contextPath}/register">Register</a>
+     | &nbsp;
      <sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
 		<a href="${pageContext.request.contextPath}/admin">Admin</a>
+	 </sec:authorize>
+	 | &nbsp;
+     <sec:authorize access="isAuthenticated()">
+		<a href="${pageContext.request.contextPath}/user/editUser">Admin</a>
 	 </sec:authorize>
      | &nbsp;
      <a href="${pageContext.request.contextPath}/logout" align="right">Logout</a>
