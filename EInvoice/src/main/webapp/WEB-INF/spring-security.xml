@@ -12,7 +12,7 @@
         <intercept-url pattern="/" access="permitAll()" />
         <intercept-url pattern="/login" access="permitAll()" />
         <intercept-url pattern="/logout" access="permitAll()" />
-        <intercept-url pattern="/register" access="permitAll()" />
+        <intercept-url pattern="/register" access="isAnonymous()" />
  
         <intercept-url pattern="/user/**"
             access="hasRole('ROLE_USER') and isAuthenticated()" />

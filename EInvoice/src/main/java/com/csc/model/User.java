@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="users")
 public class User {
@@ -20,23 +21,23 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="password", nullable = false)
+	@Column(name="password")
 	private String password;
 	
-	@Column(name = "username", nullable = false)
+	@Column(name = "username")
 	private String username;
 	
-	@Column(name="enabled", nullable = false)
+	@Column(name="enabled")
 	private int enabled;
 
-	@Column(name="email", nullable = false)
+	@Column(name="email")
 	private String email;
 	
 	@Column(name="expense_limit")
 	private int expenseLimit;
 	
 	@OneToOne(orphanRemoval = true)
-	@JoinColumn(name="role_id", nullable = false)
+	@JoinColumn(name="role_id")
 	private UserRole role;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="user")

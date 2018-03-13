@@ -17,10 +17,12 @@ public class UserRole {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="username", nullable = false)
+	@Column(name="username")
+	@NotNull
 	private String username;
 	
-	@Column(name="role", nullable = false)
+	@Column(name="role")
+	@NotNull
 	private String role;
 
 	public int getId() {

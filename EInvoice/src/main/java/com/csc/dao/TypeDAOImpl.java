@@ -1,6 +1,7 @@
 package com.csc.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -46,13 +47,14 @@ public class TypeDAOImpl implements TypeDAO {
 	public Type getType(int id){
 		return (Type) sessionFactory.getCurrentSession().get(Type.class, id);
 	}
-	
-	public Type getTypeByName(String name) {
-		String sqlStr = "select id from invoice_types u where u.name = :name";
+
+	@SuppressWarnings("unchecked")
+	public List<Type> getAllByUserId(int id) {
+		String sqlStr = "from invoice_types u where u.user.id = :id";
 		Query query = getSessionFactory().getCurrentSession().createQuery(sqlStr);
-		query.setParameter("name", name);
-		int typeId = (Integer) query.uniqueResult();
-		return this.getType(typeId);
+		query.setParameter("id", id);
+		
+		return query.list();
 	}
 	
 	public Type updateType(Type type){

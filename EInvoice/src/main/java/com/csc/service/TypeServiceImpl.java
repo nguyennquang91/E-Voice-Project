@@ -1,6 +1,7 @@
 package com.csc.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,8 @@ public class TypeServiceImpl implements TypeService {
 		return getTypeDao().getType(id);
 	}
 	
-	public Type getTypeByName(String name){
-		return getTypeDao().getTypeByName(name);
+	public List<Type> getAllByUserId(int id){
+		return getTypeDao().getAllByUserId(id);
 	}
 	
 	public Type updateType(Type type){

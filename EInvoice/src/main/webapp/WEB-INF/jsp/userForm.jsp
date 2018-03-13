@@ -15,7 +15,7 @@
         <form:form action="saveUser" method="post" modelAttribute="user">
         <table>
             <form:hidden path="id"/>
-            <form:hidden path="role"/>
+            <form:hidden path="role.id"/>
             <form:hidden path="enabled"/>
             <tr>
                 <td>Username: </td>

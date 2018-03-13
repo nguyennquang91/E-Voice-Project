@@ -30,7 +30,7 @@
          	<th>Year</th>
          	<th>Action</th>
  
-            <c:forEach var="invoice" items="${listInvoice}">
+            <c:forEach var="invoice" items="${invoiceList}">
                 <tr>
                     <td>${invoice.id}</td>
                     <td>${invoice.type.name}</td>

@@ -57,11 +57,15 @@ public class InvoiceController {
     }
 	
 	@RequestMapping(value = "/newInvoice", method = RequestMethod.GET)
-    public ModelAndView newContact(ModelAndView model) {
+    public ModelAndView newContact(ModelAndView model, Principal principal) {
+		String username = principal.getName();
+		User user = userServer.getUserByName(username);
+		System.out.println(user.getEmail() + "/" + user.getPassword() + "/" + user.getUsername() + "/" + user.getId());
         Invoice invoice = new Invoice();
+        invoice.setUser(user);
         model.addObject("invoice", invoice);
     	model.addObject("monthList", monthServer.getAll());
-    	model.addObject("typeList", typeServer.getAll());
+    	model.addObject("typeList", typeServer.getAllByUserId(user.getId()));
     	model.addObject("yearList", yearServer.getAll());
         model.setViewName("InvoiceForm");
         return model;
@@ -89,8 +93,12 @@ public class InvoiceController {
     public ModelAndView editInvoice(HttpServletRequest request) {
         int invoiceId = Integer.parseInt(request.getParameter("invoice_id"));
         Invoice invoice = invoiceServer.getInvoice(invoiceId);
+        int userId = invoice.getUser().getId();
         ModelAndView model = new ModelAndView("InvoiceForm");
         model.addObject("invoice", invoice);
+        model.addObject("monthList", monthServer.getAll());
+    	model.addObject("typeList", typeServer.getAllByUserId(userId));
+    	model.addObject("yearList", yearServer.getAll());
         return model;
     }
     

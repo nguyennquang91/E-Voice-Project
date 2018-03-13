@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="invoices")
 public class Invoice {
@@ -24,7 +25,7 @@ public class Invoice {
 	@Column(name="vat")
 	private int vat;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="type_id")
 	private Type type;
 	
@@ -36,7 +37,7 @@ public class Invoice {
 	@JoinColumn(name="year_id")
 	private Year year;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	

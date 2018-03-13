@@ -1,6 +1,7 @@
 package com.csc.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.csc.model.Type;
 
@@ -11,5 +12,5 @@ public interface TypeService {
 	public void deleteType(int id);
 	public Type getType(int id);
 	public Type updateType(Type Type);
-	public Type getTypeByName(String name);
+	public List<Type> getAllByUserId(int id);
 }
