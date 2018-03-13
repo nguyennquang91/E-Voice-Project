@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Chart</title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
  <script type="text/javascript">
  window.onload = function () {
@@ -17,11 +17,18 @@
 	 var chart = new CanvasJS.Chart("chartContainer", {
 			theme: "light2", 
 			animationEnabled: true,
-			title: {
-				text: "Column Chart from Database"
+			axisX: {
+				title: "Month",
+				
+			},
+			axisY: {
+				title: "Money",
+				suffix: "vnd"
 			},
 			data: [{
-				type: "column",
+				type: "bar",
+				yValueFormatString: "##,### vnd",
+				indexLabel: "{y}",
 				dataPoints: dps[0]
 			}]
 		});
@@ -45,7 +52,7 @@ chart.render();
  </script>
 </head>
 <body>
-	<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px; text-align: center;'>${error}</div>
+	
 
 	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 

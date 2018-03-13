@@ -36,18 +36,33 @@ public class InvoiceController {
 	
 	@RequestMapping(value = "/")
     public ModelAndView listInvoice(ModelAndView model) throws IOException {
-        ArrayList<Invoice> listInvoice = invoiceServer.getAll();
+		ArrayList<Invoice> listInvoice = invoiceServer.getAll();
         model.addObject("listInvoice", listInvoice);
         model.setViewName("invoice");
         return model;
     }
-	
+	private ModelAndView Month(@ModelAttribute Invoice invoice) {
+		return null;
+		
+	}
 	@RequestMapping(value="/chart", method = RequestMethod.GET)
 	public ModelAndView chartPage() throws IOException {
         List<Invoice> listInvoice = invoiceServer.getAll();
-        
+		int[] listMonth = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0};
+		for (Invoice s : listInvoice) {
+			listMonth[s.getInvoiceMonth()] = listMonth[s.getInvoiceMonth()]
+					+ s.getInvoiceMoney();
+		}
+		List<Invoice> xInvoice = new ArrayList<Invoice>();
+		for (int i=0; i<=12; i++)
+		{
+			Invoice yInvoice = new Invoice();
+			yInvoice.setInvoiceMoney(listMonth[i]);
+			yInvoice.setInvoiceMonth(i);
+			xInvoice.add(yInvoice);
+		}
         InvoiceListWrapper invoiceListWrapper = new InvoiceListWrapper();
-        invoiceListWrapper.setInvoiceList(listInvoice);
+        invoiceListWrapper.setInvoiceList(xInvoice);
         
         List<InvoiceListWrapper> invoiceListWrapperList = new ArrayList<InvoiceListWrapper>();
         invoiceListWrapperList.add(invoiceListWrapper);
@@ -59,13 +74,13 @@ public class InvoiceController {
         model.addObject("invoiceListWrapper", invoiceListWrapper);
         model.addObject("chartData", chartData);
         
+     
 		return model;
 	}
 	
 	@RequestMapping(value = "/newInvoice", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {
 		model.addObject("monthList", this.getMonthMap());
-		
         Invoice invoice = new Invoice();
         model.addObject("invoice", invoice);
         model.setViewName("InvoiceForm");
@@ -74,6 +89,8 @@ public class InvoiceController {
 	
 	@RequestMapping(value = "/saveInvoice", method = RequestMethod.POST)
     public ModelAndView saveInvoice(@ModelAttribute Invoice invoice) {
+		ArrayList<Invoice> listInvoice = invoiceServer.getAll();
+		
         if (invoice.getInvoiceId() == 0) { // if invoice id is 0 then creating the
             // invoice other updating the invoice
             invoiceServer.addInvoice(invoice);
@@ -99,7 +116,7 @@ public class InvoiceController {
 		model.addObject("monthList", this.getMonthMap());
         return model;
     }
-    
+  
     private Map<Integer,String> getMonthMap(){
 		Map<Integer,String> month = new LinkedHashMap<Integer,String>();
 		month.put(1, "January");

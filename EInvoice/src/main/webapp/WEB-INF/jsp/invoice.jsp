@@ -17,7 +17,6 @@
 		  <a href="report.html">Report</a>
 		  <a href="index.html" style="float: right;">Logout</a>
 	</div>
-	
   <!--table Invoice-->
   <section>
 
@@ -29,10 +28,8 @@
 					<option>2019</option>
 					<option>2018</option>
 					<option>2017</option>
-			
 				</select>
 		 		<select style="float: right" >
-				
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -41,11 +38,7 @@
 					<option>6</option>
 					<option>7</option>
 				</select>
-		 			
-	
 	  </div>
-	
-	
   
   <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -63,7 +56,7 @@
     </table>
   </div>
   <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
+    <table cellpadding="0" cellspacing="0" border="0" action="sum">
       <tbody>
         <c:forEach var="invoice" items="${listInvoice}">
                 <tr>

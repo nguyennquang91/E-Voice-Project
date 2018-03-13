@@ -49,4 +49,6 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 		sessionFactory.getCurrentSession().update(invoice);
 		return invoice;
 	}
+
+	
 }
