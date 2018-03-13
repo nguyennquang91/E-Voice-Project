@@ -27,18 +27,22 @@ public class Invoice {
 
 	@ManyToOne
 	@JoinColumn(name="type_id")
+	@NotNull
 	private Type type;
 	
 	@OneToOne
 	@JoinColumn(name="month_id")
+	@NotNull
 	private Month month;
 	
 	@OneToOne
 	@JoinColumn(name="year_id")
+	@NotNull
 	private Year year;
 
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@NotNull
 	private User user;
 	
 	public User getUser() {

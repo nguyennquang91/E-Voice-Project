@@ -24,6 +24,7 @@
         	<th>Username</th>
          	<th>Password</th>
          	<th>Email</th>
+         	<th>Role</th>
 		 	<th>State</th>
             	<c:forEach items="${userListWrapper.userList}" varStatus="uStatus" var="user">
             	<tr>
@@ -32,6 +33,7 @@
             		<td><form:hidden path="userList[${uStatus.index}].username"/>${user.username}</td>
             		<td><form:hidden path="userList[${uStatus.index}].password"/>${user.password}</td>
             		<td><form:hidden path="userList[${uStatus.index}].email"/>${user.email}</td>
+            		<td><form:hidden path="userList[${uStatus.index}].role.id"/>${user.role.role}</td>
             		<td>
 	            		<form:select path="userList[${uStatus.index}].enabled">
 							<form:options items="${stateMap}"/>

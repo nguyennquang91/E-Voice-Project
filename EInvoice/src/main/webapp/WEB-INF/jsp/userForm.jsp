@@ -15,12 +15,9 @@
         <form:form action="saveUser" method="post" modelAttribute="user">
         <table>
             <form:hidden path="id"/>
-            <form:hidden path="role.id"/>
+            <form:input path="role.id"/>
             <form:hidden path="enabled"/>
-            <tr>
-                <td>Username: </td>
-                <td><form:input path="username" required="required"/></td>
-            </tr>
+            <form:hidden path="username"/>
             <tr>
                 <td>Password:</td>
                 <td><form:input path="password" required="required"/></td>

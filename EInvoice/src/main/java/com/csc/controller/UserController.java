@@ -2,6 +2,8 @@ package com.csc.controller;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +29,11 @@ public class UserController {
     public String saveUser(@ModelAttribute User user) {
         if (user.getId() != 0) {
         	userServer.updateUser(user);
-            return "redirect:/invoice";
+        	if(user.getRole().getRole().equals("ROLE_ADMIN")){
+                return "redirect:/admin";
+            }
+        	else
+        		return "redirect:/invoice";
         }
         else{
         	String username = user.getUsername();

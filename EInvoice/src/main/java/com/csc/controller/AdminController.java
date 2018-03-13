@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,7 +49,6 @@ public class AdminController {
 	@RequestMapping(value = "/saveAllUser", method = RequestMethod.POST)
 	public ModelAndView saveAllUser(@ModelAttribute UserListWrapper userListWrapper){
 		List<User> userList = userListWrapper.getUserList();
-		
 		if(!userList.isEmpty()){
 			for(User u:userList){
 				if (u.getId() != 0) {

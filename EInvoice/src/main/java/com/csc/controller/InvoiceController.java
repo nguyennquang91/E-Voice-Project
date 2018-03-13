@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +61,6 @@ public class InvoiceController {
     public ModelAndView newContact(ModelAndView model, Principal principal) {
 		String username = principal.getName();
 		User user = userServer.getUserByName(username);
-		System.out.println(user.getEmail() + "/" + user.getPassword() + "/" + user.getUsername() + "/" + user.getId());
         Invoice invoice = new Invoice();
         invoice.setUser(user);
         model.addObject("invoice", invoice);
