@@ -2,18 +2,19 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
  
-  <a href="${pageContext.request.contextPath}/">Home</a>
+  <a href="${pageContext.request.contextPath}/processUser">Home</a>
  
   | &nbsp;
+  <c:if test="${pageContext.request.userPrincipal.name == null}">
+	<a href="${pageContext.request.contextPath}/register">Register</a>
+  </c:if>
   
   <c:if test="${pageContext.request.userPrincipal.name != null}">
   	
 	
   	<span>Hi ${pageContext.request.userPrincipal.name}</span>
      | &nbsp;
-	<sec:authorize access="isAnonymous()">
-		<a href="${pageContext.request.contextPath}/register">Register</a>
-	 </sec:authorize>
+	<a href="${pageContext.request.contextPath}/register">Register</a>
      | &nbsp;
      <sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
 		<a href="${pageContext.request.contextPath}/admin">Admin</a>

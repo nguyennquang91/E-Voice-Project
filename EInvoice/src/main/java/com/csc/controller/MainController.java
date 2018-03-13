@@ -5,6 +5,7 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -50,10 +51,36 @@ public class MainController {
 	public ModelAndView newUser(ModelAndView model){
 		User user = new User();
 		model.addObject("user", user);
-		model.setViewName("userForm");
+		model.setViewName("registrationForm");
 		return model;
 	}	
-	
+   
+   @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+   public ModelAndView saveUser(@ModelAttribute User user) {
+       if (user.getId() == 0) {
+    	   String username = user.getUsername();
+    	   
+          if(userServer.getUserByName(username) == null){
+          		UserRole userRole = new UserRole();
+          		userRole.setUsername(username);
+          		userRole.setRole("ROLE_USER");
+          		userRoleServer.addUserRole(userRole);
+          		
+          		user.setRole(userRole);
+          		user.setEnabled(1);
+          		userServer.addUser(user);
+          		
+          		return new ModelAndView("redirect:/");
+          	}
+       }
+       ModelAndView model = new ModelAndView();
+       String message = "This username already exists!!";
+       model.addObject("message", message);
+       model.setViewName("registrationForm");
+       return model;
+       
+   }
+   
    @RequestMapping(value = "/processUser", method = RequestMethod.GET)
    public String processLogin(Principal principal){
 	   String name = principal.getName();

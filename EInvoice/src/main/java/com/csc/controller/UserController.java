@@ -2,7 +2,6 @@ package com.csc.controller;
 
 import java.security.Principal;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,39 +28,30 @@ public class UserController {
     public String saveUser(@ModelAttribute User user) {
         if (user.getId() != 0) {
         	userServer.updateUser(user);
-        	if(user.getRole().getRole().equals("ROLE_ADMIN")){
-                return "redirect:/admin";
-            }
-        	else
-        		return "redirect:/invoice";
+        	UserRole userRole = user.getRole();
+        	System.out.println(userRole.getId() + "/" + userRole.getRole());
+        	return "redirect:/processUser";
         }
         else{
-        	String username = user.getUsername();
-        	User userToCheck = userServer.getUserByName(username);
-        	if(null != userToCheck){
-        		UserRole userRole = new UserRole();
-        		userRole.setUsername(username);
-        		userRole.setRole("ROLE_USER");
-        		userRoleServer.addUserRole(userRole);
-        		
-        		user.setRole(userRole);
-        		user.setEnabled(1);
-        		userServer.addUser(user);
-        		
-        		return "redirect:/";
-        	}
-        	else{
-        		return "redirect:/user/newUser";
-        	}
+        	return "redirect:/user/newUser";
         }
     }
 	
     @RequestMapping(value = "/editUser", method = RequestMethod.GET)
-    public ModelAndView editInvoice(Principal principal) {
+    public ModelAndView editUser(Principal principal) {
     	String username = principal.getName();
     	User user = userServer.getUserByName(username);
         ModelAndView model = new ModelAndView("userForm");
         model.addObject("user", user);
         return model;
+    }
+    
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+    public String deleteUser(Principal principal){
+    	String username = principal.getName();
+    	User user = userServer.getUserByName(username);
+    	int userId = user.getId();
+    	userServer.deleteUser(userId);
+    	return "redirect:/logout";
     }
 }

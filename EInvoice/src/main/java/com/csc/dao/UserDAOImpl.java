@@ -51,8 +51,13 @@ public class UserDAOImpl implements UserDAO {
 		String sqlStr = "select id from users u where u.username = :name";
 		Query query = getSessionFactory().getCurrentSession().createQuery(sqlStr);
 		query.setParameter("name", name);
-		int userId = (Integer) query.uniqueResult();
-		return this.getUser(userId);
+		try{
+			int userId = (Integer) query.uniqueResult();
+			return this.getUser(userId);
+		}
+		catch(Exception e){
+			return null;
+		}
 	}
 	
 	public User updateUser(User user){
