@@ -14,7 +14,7 @@
 <jsp:include page="_menu.jsp"/>
     <div align="center">
         <h1>Create User</h1>
-        <c:out value = "${message}"/>
+        <c:out value = "${message}"/><br>
         <form:form action="registerUser" method="post" modelAttribute="user">
         <table>
             <form:hidden path="id"/>
@@ -41,6 +41,12 @@
             </tr>
         </table>
         </form:form>
+        <button onclick="cancel()">Cancel</button>
     </div>
+ <script>
+ 	function cancel() {
+		window.location.href = "${pageContext.request.contextPath}";
+	}
+ </script>
 </body>
 </html>

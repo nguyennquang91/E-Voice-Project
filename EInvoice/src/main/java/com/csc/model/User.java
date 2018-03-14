@@ -40,7 +40,7 @@ public class User {
 	@Column(name="expense_limit")
 	private int expenseLimit;
 	
-	@OneToOne(orphanRemoval = true)
+	@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name="role_id")
 	@NotNull
 	private UserRole role;

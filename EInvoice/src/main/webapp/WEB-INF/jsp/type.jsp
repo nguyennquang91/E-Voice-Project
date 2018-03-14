@@ -15,7 +15,7 @@
     <div align="center">
         <h1>Type List</h1>
         <h3>
-            <a href="${pageContext.request.contextPath}/type/newType">New Invoice</a>
+            <a href="${pageContext.request.contextPath}/type/newType">New Type</a>
         </h3>
         <table border="1">
  
@@ -27,8 +27,8 @@
                 <tr>
                     <td>${type.id}</td>
                     <td>${type.name}</td>
-                    <td><a href="${pageContext.request.contextPath}/type/edittype?type_id=${type.id}">Edit</a>
-                        <a href="${pageContext.request.contextPath}/type/deletetype?type_id=${type.id}">Delete</a></td>
+                    <td><a href="${pageContext.request.contextPath}/type/editType?type_id=${type.id}">Edit</a>
+                        <a href="${pageContext.request.contextPath}/type/deleteType?type_id=${type.id}">Delete</a></td>
                 </tr>
          </c:forEach>
         </table>

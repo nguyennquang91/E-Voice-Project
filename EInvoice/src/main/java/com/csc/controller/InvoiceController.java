@@ -72,16 +72,48 @@ public class InvoiceController {
     }
 	
 	@RequestMapping(value = "/saveInvoice", method = RequestMethod.POST)
-    public ModelAndView saveInvoice(@ModelAttribute Invoice invoice) {
-        if (invoice.getId() != 0) {
-        	invoiceServer.updateInvoice(invoice);
-        }
-        else{
-        	invoiceServer.addInvoice(invoice);
-        }
-        return new ModelAndView("redirect:/invoice");
+    public ModelAndView saveInvoice(@ModelAttribute Invoice invoice, Principal principal) {
+		if(validate(invoice, principal)){
+	        if (invoice.getId() != 0) {
+	        	invoiceServer.updateInvoice(invoice);
+	        }
+	        else{
+	        	invoiceServer.addInvoice(invoice);
+	        }
+	        return new ModelAndView("redirect:/invoice");
+		}
+		String username = principal.getName();
+		
+		User user = userServer.getUserByName(username);
+		int userId = user.getId();
+		
+		ModelAndView model = new ModelAndView("InvoiceForm");
+		
+		model.addObject("message", "This invoice already exists!!");
+        model.addObject("invoice", invoice);
+        model.addObject("monthList", monthServer.getAll());
+    	model.addObject("typeList", typeServer.getAllByUserId(userId));
+    	model.addObject("yearList", yearServer.getAll());
+        return model;
     }
  
+	private boolean validate(Invoice invoice, Principal principal){
+		String username = principal.getName();
+		
+		User user = userServer.getUserByName(username);
+		int userId = user.getId();
+		
+    	List<Invoice> invoiceList = invoiceServer.getAllByUserId(userId);
+    	
+    	for(Invoice i:invoiceList){
+    		if(i.getType().getId()==invoice.getType().getId() && i.getMonth().getId()==invoice.getMonth().getId()
+    				&& i.getYear().getId()==invoice.getYear().getId()){
+    			return false;
+    		}
+    	}
+    	return true;	
+	}
+	
     @RequestMapping(value = "/deleteInvoice", method = RequestMethod.GET)
     public ModelAndView deleteInvoice(HttpServletRequest request) {
         int invoiceId = Integer.parseInt(request.getParameter("invoice_id"));

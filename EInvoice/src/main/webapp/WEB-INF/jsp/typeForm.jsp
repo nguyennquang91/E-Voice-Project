@@ -14,6 +14,7 @@
 <jsp:include page="_menu.jsp"/>
     <div align="center">
         <h1>Create/Edit Type</h1>
+        <c:out value = "${message}"/><br>
         <form:form action="saveType" method="post" modelAttribute="type">
         <table>
             <form:hidden path="id"/>
@@ -27,6 +28,12 @@
             </tr>
         </table>
         </form:form>
+        <button onclick="cancel()">Cancel</button>
     </div>
+<script>
+ 	function cancel() {
+		window.location.href = "${pageContext.request.contextPath}/type";
+	}
+ </script>
 </body>
 </html>
