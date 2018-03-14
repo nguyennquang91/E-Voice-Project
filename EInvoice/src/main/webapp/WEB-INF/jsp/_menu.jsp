@@ -20,12 +20,16 @@ span, a {
 		 <span>Hi ${pageContext.request.userPrincipal.name}</span>
 		| &nbsp;
 		<a href="${pageContext.request.contextPath}/user/editUser">Edit user</a>
+	 	| &nbsp;
 	 </sec:authorize>
-	 | &nbsp;
 	<sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
 		<a href="${pageContext.request.contextPath}/type">Type</a>
+		| &nbsp;
+		<a href="${pageContext.request.contextPath}/chart">Chart</a>
+		| &nbsp;
+		<a href="${pageContext.request.contextPath}/report">Report</a>
+	 	| &nbsp;
 	</sec:authorize>
-     | &nbsp;
      <a href="${pageContext.request.contextPath}/logout">Logout</a>
   </c:if>
 </div>

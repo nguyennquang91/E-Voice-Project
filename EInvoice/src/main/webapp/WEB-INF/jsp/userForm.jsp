@@ -34,7 +34,7 @@
             	<td><form:input path="expenseLimit"/></td>
             </tr>
             <tr>
-                <td align="center"><input type="submit" value="Save"></td>
+                <td colspan="2" align="center"><input type="submit" value="Save"></td>
             </tr>
         </table>
         </form:form>
