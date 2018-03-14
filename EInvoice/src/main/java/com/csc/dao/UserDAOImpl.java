@@ -56,8 +56,8 @@ public class UserDAOImpl implements UserDAO {
 			return this.getUser(userId);
 		}
 		catch(Exception e){
-			return null;
 		}
+		return null;
 	}
 	
 	public User updateUser(User user){
