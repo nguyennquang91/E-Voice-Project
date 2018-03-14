@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,18 +38,9 @@ public class AdminController {
         return model;
     }
 	
-	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-    public ModelAndView saveUser(@ModelAttribute User user) {
-        if (user.getId() != 0) {
-            userService.updateUser(user);
-        }
-        return new ModelAndView("redirect:/admin");
-    }
-	
 	@RequestMapping(value = "/saveAllUser", method = RequestMethod.POST)
-	public ModelAndView saveAllUser(@ModelAttribute UserListWrapper userListWrapper){
+	public String saveAllUser(@ModelAttribute UserListWrapper userListWrapper){
 		List<User> userList = userListWrapper.getUserList();
-		
 		if(!userList.isEmpty()){
 			for(User u:userList){
 				if (u.getId() != 0) {
@@ -55,7 +48,7 @@ public class AdminController {
 		        }
 			}
 		}
-        return new ModelAndView("redirect:/admin");
+        return "redirect:/admin";
 	}
 	
 	private Map<Integer,String> getUserStateMap(){

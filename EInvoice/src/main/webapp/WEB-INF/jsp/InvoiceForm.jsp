@@ -14,14 +14,15 @@
 <jsp:include page="_menu.jsp"/>
     <div align="center">
         <h1>Create/Edit Invoice</h1>
+        <c:out value="${message}"/><br>
         <form:form action="saveInvoice" method="post" modelAttribute="invoice">
         <table>
             <form:hidden path="id"/>
-            <form:input path="user.id" readonly="true"/>
+            <form:hidden path="user.id"/>
             <form:hidden path="vat"/>
             <tr>
                 <td>Type:</td>
-                <td><form:select path="type.id">
+                <td><form:select path="type.id" required="required">
        					<c:forEach items="${typeList}" var="t">
         					<form:option value="${t.id}" label="${t.name}" />
        					</c:forEach>
@@ -30,11 +31,11 @@
             </tr>
             <tr>
                 <td>Money:</td>
-                <td><form:input path="money" required="required"/></td>
+                <td><form:input path="money" required="required" pattern="[0-9]+"/> (number only)</td>
             </tr>
             <tr>
             	<td>Month</td>
-            	<td><form:select path="month.id">
+            	<td><form:select path="month.id" required="required">
        					<c:forEach items="${monthList}" var="m">
         					<form:option value="${m.id}" label="${m.name}" />
        					</c:forEach>
@@ -43,7 +44,7 @@
             </tr>
             <tr>
             	<td>Year</td>
-            	<td><form:select path="year.id">
+            	<td><form:select path="year.id" required="required">
        					<c:forEach items="${yearList}" var="y">
         					<form:option value="${y.id}" label="${y.value}" />
        					</c:forEach>
@@ -55,6 +56,12 @@
             </tr>
         </table>
         </form:form>
+        <button onclick="cancel()">Cancel</button>
     </div>
+<script>
+ 	function cancel() {
+		window.location.href = "${pageContext.request.contextPath}/invoice";
+	}
+ </script>
 </body>
 </html>

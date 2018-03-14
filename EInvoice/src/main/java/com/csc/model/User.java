@@ -22,22 +22,27 @@ public class User {
 	private int id;
 	
 	@Column(name="password")
+	@NotNull
 	private String password;
 	
 	@Column(name = "username")
+	@NotNull
 	private String username;
 	
 	@Column(name="enabled")
+	@NotNull
 	private int enabled;
 
 	@Column(name="email")
+	@NotNull
 	private String email;
 	
 	@Column(name="expense_limit")
 	private int expenseLimit;
 	
-	@OneToOne(orphanRemoval = true)
+	@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name="role_id")
+	@NotNull
 	private UserRole role;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="user")

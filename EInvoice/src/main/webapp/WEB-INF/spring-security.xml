@@ -14,7 +14,11 @@
         <intercept-url pattern="/logout" access="permitAll()" />
         <intercept-url pattern="/register" access="isAnonymous()" />
  
-        <intercept-url pattern="/user/**"
+        <intercept-url pattern="/user/**" access="isAuthenticated()" />
+        
+        <intercept-url pattern="/invoice/**"
+            access="hasRole('ROLE_USER') and isAuthenticated()" />
+        <intercept-url pattern="/type/**"
             access="hasRole('ROLE_USER') and isAuthenticated()" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN') and isAuthenticated()" />
  
