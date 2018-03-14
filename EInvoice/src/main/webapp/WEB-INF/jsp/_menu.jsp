@@ -1,6 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
+<style>
+span, a {
+	color:rgba(255,255,255,1);
+    text-decoration: none;
+
+}
+</style>
+<div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;background-color: rgba(76,76,76,1);">
 
   <c:if test="${!(pageContext.request.userPrincipal.name != null)}">
 	<a href="${pageContext.request.contextPath}/register">Register</a>

@@ -36,6 +36,9 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	<mvc:annotation-driven enable-matrix-variables="true"/>
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	<mvc:annotation-driven/> 
 
 
 	<!-- Database Configuration -->

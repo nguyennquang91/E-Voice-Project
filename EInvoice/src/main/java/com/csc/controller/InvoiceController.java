@@ -120,7 +120,85 @@ public class InvoiceController {
         invoiceServer.deleteInvoice(invoiceId);
         return new ModelAndView("redirect:/invoice");
     }
- 
+
+	@RequestMapping(value="/chart", method = RequestMethod.GET)
+	public void chartPage() throws IOException {
+//        List<Invoice> listInvoice = invoiceServer.getAll();
+//        //Year
+//		int[] listYear = new int[20];
+//		int[] sumMoneyYear= new int[20];
+//		int countYear=-1;
+//		for (Invoice s:listInvoice){
+//			boolean check=true;
+//			for (int i=0; i<=19; i++){
+//				if (s.getInvoiceYear()==listYear[i])
+//				{
+//					sumMoneyYear[i]=sumMoneyYear[i]+s.getInvoiceMoney();
+//					check=false;
+//					break;
+//				}
+//			}
+//			if (check){
+//				countYear++;
+//				listYear[countYear]=s.getInvoiceYear();
+//				sumMoneyYear[countYear]=s.getInvoiceMoney();
+//			}
+//		}
+//		
+//		List<Invoice> YearInvoices = new ArrayList<Invoice>();
+//		for (int i=0; i<=19; i++)
+//		{
+//			if(listYear[i]!=0){
+//				Invoice Invoice = new Invoice();
+//				Invoice.setInvoiceMoney(sumMoneyYear[i]);
+//				Invoice.setInvoiceYear(listYear[i]);
+//				YearInvoices.add(Invoice);
+//			}
+//		}
+//		InvoiceListWrapper invoiceListWrapperYear = new InvoiceListWrapper();
+//        invoiceListWrapperYear.setInvoiceList(YearInvoices);
+//        
+//        List<InvoiceListWrapper> invoiceListWrapperListYear = new ArrayList<InvoiceListWrapper>();
+//        invoiceListWrapperListYear.add(invoiceListWrapperYear);
+//        
+//        CanvasChartData chartDataYear= new CanvasChartData();
+//        chartDataYear.setInvoiceListWrapperList(invoiceListWrapperListYear);
+//			
+//		//Month
+//        int[] sumMoneyMonth = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//        for (Invoice s : listInvoice) {
+//			sumMoneyMonth[s.getInvoiceMonth()] = sumMoneyMonth[s.getInvoiceMonth()]
+//					+ s.getInvoiceMoney();
+//		}
+//		List<Invoice> xInvoice = new ArrayList<Invoice>();
+//		for (int i=0; i<=12; i++)
+//		{
+//			
+//			Invoice yInvoice = new Invoice();
+//			yInvoice.setInvoiceMoney(sumMoneyMonth[i]);
+//			yInvoice.setInvoiceMonth(i);
+//			xInvoice.add(yInvoice);
+//			
+//		}
+//        InvoiceListWrapper invoiceListWrapper = new InvoiceListWrapper();
+//        invoiceListWrapper.setInvoiceList(xInvoice);
+//        
+//        List<InvoiceListWrapper> invoiceListWrapperList = new ArrayList<InvoiceListWrapper>();
+//        invoiceListWrapperList.add(invoiceListWrapper);
+//        
+//        CanvasChartData chartData = new CanvasChartData();
+//        chartData.setInvoiceListWrapperList(invoiceListWrapperList);
+//          
+//        //Jsp
+//        ModelAndView model = new ModelAndView("chart");
+//        model.addObject("invoiceListWrapperYear", invoiceListWrapperYear);
+//        model.addObject("chartDataYear", chartDataYear);
+//        model.addObject("invoiceListWrapper", invoiceListWrapper);
+//        model.addObject("chartData", chartData);
+        
+//		return model;
+	}
+	
     @RequestMapping(value = "/editInvoice", method = RequestMethod.GET)
     public ModelAndView editInvoice(HttpServletRequest request) {
         int invoiceId = Integer.parseInt(request.getParameter("invoice_id"));
