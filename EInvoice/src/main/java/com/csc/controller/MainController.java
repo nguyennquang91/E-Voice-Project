@@ -1,6 +1,7 @@
 package com.csc.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,11 @@ public class MainController {
        return "loginPage";
    }
  
+   @RequestMapping(value="/pagination")
+   public String pagination(){
+	   return "paginationtest";
+   }
+   
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(ModelAndView model) {
        return "redirect:/";
@@ -57,28 +63,49 @@ public class MainController {
    
    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
    public ModelAndView saveUser(@ModelAttribute User user) {
-       if (user.getId() == 0) {
-    	   String username = user.getUsername();
-    	   
-          if(userServer.getUserByName(username) == null){
-          		UserRole userRole = new UserRole();
-          		userRole.setUsername(username);
-          		userRole.setRole("ROLE_USER");
-          		userRoleServer.addUserRole(userRole);
-          		
-          		user.setRole(userRole);
-          		user.setEnabled(1);
-          		userServer.addUser(user);
-          		
-          		return new ModelAndView("redirect:/");
-          	}
+       if (validate(user)) {
+	  		UserRole userRole = new UserRole();
+	  		userRole.setUsername(user.getUsername());
+	  		userRole.setRole("ROLE_USER");
+	  		userRoleServer.addUserRole(userRole);
+	  		
+	  		user.setRole(userRole);
+	  		user.setEnabled(1);
+	  		userServer.addUser(user);
+	  		
+	  		String[] typeList = {"Electric", "Water", "Telephone", "Internet"};
+	  		for(String t: typeList){
+	   			 Type type = new Type();
+	   			 type.setName(t);
+	   			 type.setUser(user);
+	   			 typeServer.addType(type);
+	  		}
+	  		
+	  		return new ModelAndView("redirect:/");
+          	
        }
-       ModelAndView model = new ModelAndView();
+       
+       ModelAndView model = new ModelAndView("registrationForm");
        String message = "This username already exists!!";
+       model.addObject("user", user);
        model.addObject("message", message);
-       model.setViewName("registrationForm");
+       
        return model;
        
+   }
+   
+   private boolean validate(User user){
+	   if (user.getId() == 0) {
+    	   String username = user.getUsername();
+    	   List<User> userList = userServer.getAll();
+    	   
+    	   for(User u:userList){
+    		   if(u.getUsername().equalsIgnoreCase(username)){
+    			   return false;
+    		   }
+    	   }
+	   }
+	   return true;
    }
    
    @RequestMapping(value = "/processUser", method = RequestMethod.GET)
