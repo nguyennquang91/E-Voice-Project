@@ -99,7 +99,7 @@ public class DaoTest {
 		}
 	}
 
-	// @Test
+	@Test
 	public void testUpdateUser() {
 		try {
 			User user = userDao.getUser(11);
