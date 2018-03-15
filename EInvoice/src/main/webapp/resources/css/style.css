@@ -1,1 +1,36 @@
-{}
+h1{
+	text-align: center;
+}
+#edtype {
+	margin: 2px;
+	font-size: 15px;
+}
+table{
+  width:600px;
+  table-layout: fixed;
+  margin-top: 20px;
+}
+#wrapper {
+	margin-top: 50px;
+}
+thead {
+	background-color: #024457;
+  	color:white;
+  	font-size: 20px;
+  	border-color: #024457;
+}
+th {
+	padding: 20px;
+}
+tbody tr  {
+	border-color: white;
+	color: #000000;
+}
+tbody tr td {
+	padding: 25px;
+}
+button a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}

@@ -42,11 +42,6 @@ public class MainController {
    public String loginPage(ModelAndView model) {
        return "loginPage";
    }
- 
-   @RequestMapping(value="/pagination")
-   public String pagination(){
-	   return "paginationtest";
-   }
    
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(ModelAndView model) {
@@ -145,9 +140,9 @@ public class MainController {
 		   monthServer.addMonth(month);
 	   }
 	   
-	  for(int i = 0; i < 41; i++){
+	  for(int i = 0; i < 21; i++){
 		  Year year = new Year();
-		  year.setValue(1990+i);
+		  year.setValue(2010+i);
 		  yearServer.addYear(year);
 	  }
 
