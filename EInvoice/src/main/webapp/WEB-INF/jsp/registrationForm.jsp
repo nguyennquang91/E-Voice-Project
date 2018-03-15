@@ -42,14 +42,18 @@
             <form:input path="expenseLimit" class="form-control" placeholder="Expense Limit"/>
         </div>
         <button type="submit" class="btn btn-primary" value="Save">Create</button>
-        <button type="submit" onclick="cancel()" class="btn btn-primary">Cancel</button>
+        
     </form:form>
+    </br>
+    <input type="button" value="Cancel" onclick="cancel()" class="btn btn-primary" />
 </div>
 </div>
 </div>
       
 <script>
-
+function cancel() {
+	window.location.href = "${pageContext.request.contextPath}";
+}
  </script>
 </div>
 </body>

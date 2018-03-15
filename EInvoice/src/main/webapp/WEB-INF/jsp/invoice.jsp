@@ -31,7 +31,7 @@
 		        	<th>Type</th>
 		         	<th>Money</th>
 				 	<th>VAT</th>
-		         	<th>Year/Month</th>
+		         	<th>Charged period</th>
 		         	<th>Action</th>
 		        </tr>
 		      </thead>
