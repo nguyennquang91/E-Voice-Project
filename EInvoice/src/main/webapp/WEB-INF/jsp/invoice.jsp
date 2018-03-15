@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page session="true"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,8 +31,8 @@
 		        <tr>
 		          	<th>ID</th>
 		        	<th>Type</th>
-		         	<th>Money</th>
-				 	<th>VAT</th>
+		         	<th>Money (in VND)</th>
+				 	<th>VAT (in VND)</th>
 		         	<th>Charged period</th>
 		         	<th>Action</th>
 		        </tr>
@@ -45,8 +46,8 @@
 	                <tr>
 	                    <td>${invoice.id}</td>
 	                    <td>${invoice.type.name}</td>
-	                    <td>${invoice.money}</td>
-	                    <td>${invoice.vat}</td>
+	                    <td><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${invoice.money}" /></td>
+	                    <td><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${invoice.vat}" /></td>
 	                    <td>${invoice.month.name}<span>/</span>${invoice.year.value}</td>
 	                    <td>
 	                    <a id="edInvoice" href="${pageContext.request.contextPath}/invoice/editInvoice?invoice_id=${invoice.id}" class="btn btn-info btn-lg">

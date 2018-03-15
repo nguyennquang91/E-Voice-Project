@@ -23,7 +23,6 @@
      <form:form action="saveInvoice" method="post" modelAttribute="invoice">
     		<form:hidden path="id"/>
             <form:hidden path="user.id"/>
-            <form:hidden path="vat"/>
         <div class="form-group">
             Type:
              <form:select path="type.id" required="required" class="form-control">
@@ -33,8 +32,14 @@
 				     </form:select>
         </div>
         <div class="form-group">
-               Money:
+               Money (in VND):
                <form:input path="money" required="required" pattern="[0-9]+" class="form-control"/>
+               (non-negative whole number)
+        </div>
+        <div class="form-group">
+               VAT (in VND):
+               <form:input path="vat" required="required" pattern="[0-9]+" class="form-control"/>
+               (non-negative whole number)
         </div>
         <div class="form-group">
         Month:

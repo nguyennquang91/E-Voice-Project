@@ -22,6 +22,7 @@ import com.csc.model.Year;
 import com.csc.service.InvoiceService;
 import com.csc.service.MonthService;
 import com.csc.service.UserService;
+import com.csc.service.YearService;
 
 @Controller
 @RequestMapping("/chart")
@@ -35,6 +36,9 @@ public class ChartController {
 	@Autowired
 	MonthService monthServer;
 	
+	@Autowired
+	YearService yearServer;
+	
 	@RequestMapping(value = "")
     public ModelAndView reportPage(Principal principal) {
 		ModelAndView model = new ModelAndView("chart");
@@ -45,6 +49,7 @@ public class ChartController {
     @RequestMapping(value = "/getChart", method = RequestMethod.GET)
     public ModelAndView getReport(Principal principal, HttpServletRequest request) {
         int yearId = Integer.parseInt(request.getParameter("year_id"));
+        Year selectedYear = yearServer.getYear(yearId);
         
         String username = principal.getName();
         User user = userServer.getUserByName(username);
@@ -57,13 +62,14 @@ public class ChartController {
         	int moneyTotal = 0;
         	for(Invoice i:invoiceList){
         		if(i.getYear().getId() == yearId && i.getMonth().getId() == m.getId()){
-        			moneyTotal += i.getMoney();
+        			moneyTotal += i.getMoney() + i.getVat();
         		}
         	}
         	monthToMoneyMap.put(m.getId(), "" + moneyTotal);
         }
         
         ModelAndView model = new ModelAndView("chart");
+        model.addObject("selectedYearStr", selectedYear.getValue());
         model.addObject("yearSet", this.getYearSet(principal));
         model.addObject("monthToMoneyMap", monthToMoneyMap);
         

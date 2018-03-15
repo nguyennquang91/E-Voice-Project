@@ -38,8 +38,9 @@
              <form:input required="required" path="email" class="form-control" placeholder="Email"/>
         </div>
         <div class="form-group">
-            Expense limit :
-            <form:input path="expenseLimit" class="form-control" placeholder="Expense Limit"/>
+            Expense limit (in VND):
+            <form:input path="expenseLimit" pattern="[0-9]+" class="form-control" placeholder="Expense Limit"/>
+            (non-negative whole number)
         </div>
         <button type="submit" class="btn btn-primary" value="Save">Create</button>
         <input type="button" value="Cancel"  onclick="cancel()" class="btn btn-primary"/>

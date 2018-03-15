@@ -37,13 +37,13 @@
         </div>
         <div class="form-group">
             Expense limit :
-            <form:input path="expenseLimit" class="form-control"/>
-          
+            <form:input path="expenseLimit" pattern="[0-9]+" class="form-control"/>
+            (non-negative whole number)
         </div>
         <button type="submit" class="btn btn-primary" value="Save">Save</button>
         <input type="button" value="Cancel"  onclick="cancel()" class="btn btn-primary"/>
     </form:form>
-    <br><br>
+    <br>
     <a class="btn btn-primary" href="${pageContext.request.contextPath}/user/deleteUser" onclick="return confirm('Are you sure?')">Delete this user</a>
 </div>
 </div>

@@ -18,6 +18,7 @@
         
         <form:form modelAttribute="userListWrapper" method="POST" action="admin/saveAllUser">
         <input type="submit" value="Save">
+        <br>
         <table border="1">
  
             <th>User ID</th>

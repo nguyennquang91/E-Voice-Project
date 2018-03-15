@@ -20,12 +20,13 @@
 				
 			},
 			axisY: {
-				title: "Money",
-			
-				suffix: "vnd"
+				title: "Money (in VND)",
 			},
 			data: [{
 				type: "column",
+				yValueFormatString: "##,###",
+				indexLabel: "{y}",
+				
 				dataPoints: dps[0]
 			}]
 		});
@@ -50,7 +51,7 @@ chart.render();
 <jsp:include page="_menu.jsp"/>
 <div align="center">
 	<h3>
-		Chart
+		Chart of year ${selectedYearStr}
 	</h3>
 	<input type="submit" value="Pick this year" onclick="getChart()" /> 
 	<select id="selectedYear">
@@ -63,7 +64,9 @@ chart.render();
 	function getChart() {
 		var e = document.getElementById("selectedYear");
 		var yearValue = e.options[e.selectedIndex].value;
-		window.location.href = "${pageContext.request.contextPath}/chart/getChart?year_id="+yearValue;
+		if (typeof yearValue !== 'undefined' && yearValue !== null) {
+			window.location.href = "${pageContext.request.contextPath}/chart/getChart?year_id="+yearValue;
+		}
 	}
  </script>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page session="true"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,7 +14,7 @@
 <jsp:include page="_menu.jsp"/>
 <div align="center">
 	<h3>
-		Report
+		Report of year ${selectedYearStr}
 	</h3>
 	<input type="submit" value="Pick this year" onclick="performReport()" /> 
 	<select id="selectedYear">
@@ -24,22 +25,22 @@
 </div>
 <div>
 	<h3>
-		By Type
+		By Type (in VND)
 	</h3>
 	<ul>
 		<c:forEach items="${typeToMoneyMap}" var="t">
-			<li>${t.key} : ${t.value}</li>
+			<li>${t.key} : <fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${t.value}"/></li>
 		</c:forEach>
 	</ul>
 </div>
 <br>
 <div>
 	<h3>
-		By Month
+		By Month (in VND)
 	</h3>
 	<ul>
 		<c:forEach items="${monthToMoneyMap}" var="m">
-			<li>${m.key} : ${m.value}</li>
+			<li>${m.key} : <fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${m.value}"/></li>
 		</c:forEach>
 	</ul>
 </div>
@@ -47,7 +48,9 @@
  	function performReport() {
  		var e = document.getElementById("selectedYear");
  		var yearValue = e.options[e.selectedIndex].value;
-		window.location.href = "${pageContext.request.contextPath}/report/getReport?year_id="+yearValue;
+ 		if (typeof yearValue !== 'undefined' && yearValue !== null) {
+ 			window.location.href = "${pageContext.request.contextPath}/report/getReport?year_id="+yearValue;
+ 		}
 	}
  </script>
 </body>
