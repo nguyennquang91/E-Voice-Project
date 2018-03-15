@@ -20,6 +20,11 @@
             access="hasRole('ROLE_USER') and isAuthenticated()" />
         <intercept-url pattern="/type/**"
             access="hasRole('ROLE_USER') and isAuthenticated()" />
+        <intercept-url pattern="/report/**"
+            access="hasRole('ROLE_USER') and isAuthenticated()" />
+        <intercept-url pattern="/chart/**"
+            access="hasRole('ROLE_USER') and isAuthenticated()" />
+            
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN') and isAuthenticated()" />
  
         <access-denied-handler error-page="/403" />
