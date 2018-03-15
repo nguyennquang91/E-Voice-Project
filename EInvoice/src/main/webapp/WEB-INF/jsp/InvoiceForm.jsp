@@ -9,13 +9,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Create/Edit Invoice</title>
+<link href="<c:url value="/resources/css/styleForm.css" />" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 <jsp:include page="_menu.jsp"/>
 			
-			
 	<div class="form-page">
-	<h1>Register</h1>
+	<h1>Create/Edit Invoice</h1>
 	<div class="form">
 	<div class="bs-example">
 	<c:out value = "${message}"/>
@@ -37,6 +38,7 @@
                <form:input path="money" required="required" pattern="[0-9]+" class="form-control"/>
         </div>
         <div class="form-group">
+        Month:
         	          <form:select path="month.id" required="required" class="form-control">
        					<c:forEach items="${monthList}" var="m">
         					<form:option value="${m.id}" label="${m.name}" />
@@ -51,64 +53,14 @@
        					</c:forEach>
 				</form:select>
         </div>
-        <div class="form-group">
-            Expense limit :
-            <form:input path="expenseLimit" class="form-control" placeholder="Expense Limit"/>
-        </div>
-       	<input type="submit" value="Save">
-        <button type="submit" class="btn btn-primary" value="Save">Create</button>
+        <button type="submit" class="btn btn-primary" value="Save">Save</button>
     </form:form>
-     	<button  onclick="cancel()" class="btn btn-primary">Cancel</button>
+    	<br>
+     	<input type="button" value="Cancel"  onclick="cancel()" class="btn btn-primary"/>
 </div>
 </div>
 </div>
 
-<!--     <div align="center"> -->
-<!--         <h1>Create/Edit Invoice</h1> -->
-<%--         <c:out value="${message}"/><br> --%>
-<%--         <form:form action="saveInvoice" method="post" modelAttribute="invoice"> --%>
-<!--         <table> -->
-<%--             <form:hidden path="id"/> --%>
-<%--             <form:hidden path="user.id"/> --%>
-<%--             <form:hidden path="vat"/> --%>
-<!--             <tr> -->
-<!--                 <td>Type:</td> -->
-<%--                 <td><form:select path="type.id" required="required"> --%>
-<%--        					<c:forEach items="${typeList}" var="t"> --%>
-<%--         					<form:option value="${t.id}" label="${t.name}" /> --%>
-<%--        					</c:forEach> --%>
-<%-- 				     </form:select> --%>
-<!-- 				</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--                 <td>Money:</td> -->
-<%--                 <td><form:input path="money" required="required" pattern="[0-9]+"/> (number only)</td> --%>
-<!--             </tr> -->
-<!--             <tr> -->
-<!--             	<td>Month</td> -->
-<%--             	<td><form:select path="month.id" required="required"> --%>
-<%--        					<c:forEach items="${monthList}" var="m"> --%>
-<%--         					<form:option value="${m.id}" label="${m.name}" /> --%>
-<%--        					</c:forEach> --%>
-<%-- 				     </form:select> --%>
-<!-- 				</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--             	<td>Year</td> -->
-<%--             	<td><form:select path="year.id" required="required"> --%>
-<%--        					<c:forEach items="${yearList}" var="y"> --%>
-<%--         					<form:option value="${y.id}" label="${y.value}" /> --%>
-<%--        					</c:forEach> --%>
-<%-- 				     </form:select> --%>
-<!-- 				</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--                 <td colspan="2" align="center"><input type="submit" value="Save"></td> -->
-<!--             </tr> -->
-<!--         </table> -->
-<%--         </form:form> --%>
-<!--         <button onclick="cancel()">Cancel</button> -->
-<!--     </div> -->
 <script>
  	function cancel() {
 		window.location.href = "${pageContext.request.contextPath}/invoice";

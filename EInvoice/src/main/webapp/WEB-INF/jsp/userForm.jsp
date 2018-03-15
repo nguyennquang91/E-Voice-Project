@@ -26,10 +26,7 @@
             <form:hidden path="role.id"/>
             <form:hidden path="enabled"/>
             <form:hidden path="username"/>
-        <div class="form-group">
-            UserName :
-            <form:input path="password" required="required" class="form-control"/>
-        </div>
+        
         <div class="form-group">
             Password :
              <form:input path="password" class="form-control" required="required"/>
@@ -44,8 +41,10 @@
           
         </div>
         <button type="submit" class="btn btn-primary" value="Save">Create</button>
-        <button type="submit" onclick="cancel()" class="btn btn-primary">Cancel</button>
+        
     </form:form>
+    <br>
+    <input type="button" onclick="cancel()" class="btn btn-primary" value="Cancel"/>
 </div>
 </div>
 </div>
