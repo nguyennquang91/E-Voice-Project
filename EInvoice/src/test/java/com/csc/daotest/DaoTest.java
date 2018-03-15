@@ -57,7 +57,7 @@ public class DaoTest {
 		}
 	}
 
-	@Test
+	//@Test
 	public void testAddUser() {
 		try {
 			String[] typeList = { "Electric", "Water", "Telephone", "Internet" };
