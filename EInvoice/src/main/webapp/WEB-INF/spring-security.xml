@@ -25,7 +25,7 @@
         <access-denied-handler error-page="/403" />
  
         <form-login login-page='/login' login-processing-url="/j_spring_security_check"
-            default-target-url="/processUser" always-use-default-target="false"
+            default-target-url="/processUser" always-use-default-target="true"
             authentication-failure-url="/login?error=true" username-parameter="username"
             password-parameter="password" />
  

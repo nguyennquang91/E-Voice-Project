@@ -39,36 +39,6 @@ public class InvoiceTest {
 	@Autowired
 	YearDAO yearDao;
 
-	// @Test
-	public void testAddType() {
-		try {
-			String[] typeList = { "Electric", "Water", "Telephone", "Internet" };
-			User user = userDao.getUser(12);
-			if (user != null) {
-				for (String t : typeList) {
-					Type type = new Type();
-					type.setName(t);
-					type.setUser(user);
-					typeDao.addType(type);
-				}
-			} else
-				System.out.println("KHONG ADD DUOC INVOICE_TYPE VI USER KHONG CO TON TAI !!!");
-		} catch (Exception e) {
-			e.printStackTrace();
-			Assert.fail();
-		}
-	}
-
-	// @Test
-	public void testDeleteType() {
-		try {
-			typeDao.deleteType(32);
-		} catch (Exception e) {
-			e.printStackTrace();
-			Assert.fail();
-		}
-	}
-
 	@Test
 	public void testGetInvoice() {
 		try {
@@ -80,7 +50,7 @@ public class InvoiceTest {
 		}
 	}
 
-	//@Test
+	// @Test
 	public void testAddInvoice() {
 		try {
 			List<Type> type = typeDao.getAllByUserId(12);
@@ -90,8 +60,8 @@ public class InvoiceTest {
 			if (type != null) {
 				Invoice invoice = new Invoice();
 				invoice.setType(type.get(3));
-				invoice.setMonth(month.get(9));
-				invoice.setYear(year.get(29));
+				invoice.setMonth(month.get(4));
+				invoice.setYear(year.get(28));
 				invoice.setMoney(250000);
 				invoice.setVat(0);
 				invoice.setUser(user);

@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.csc.dao.TypeDAO;
 import com.csc.dao.UserDAO;
 import com.csc.dao.UserRoleDAO;
+import com.csc.model.Type;
 import com.csc.model.User;
 import com.csc.model.UserRole;
 
@@ -25,6 +27,9 @@ public class DaoTest {
 	@Autowired
 	UserRoleDAO userRoleDao;
 
+	@Autowired
+	TypeDAO typeDao;
+	
 	@BeforeClass
 	public static void setUp() {
 		System.out.println("-----> SETUP <-----");
@@ -52,21 +57,28 @@ public class DaoTest {
 		}
 	}
 
-	//@Test
+	@Test
 	public void testAddUser() {
 		try {
+			String[] typeList = { "Electric", "Water", "Telephone", "Internet" };
 			UserRole role = new UserRole();
 			User user = new User();
-			role.setUsername("trieuliem");
+			role.setUsername("noname");
 			role.setRole("ROLE_USER");
-			user.setUsername("trieuliem");
-			user.setEmail("trieuliem18@gmail.com");
+			user.setUsername("noname");
+			user.setEmail("noname@gmail.com");
 			user.setEnabled(1);
-			user.setPassword("khongbiet");
+			user.setPassword("qwert");
 			user.setExpenseLimit(0);
 			user.setRole(role);
 			userRoleDao.addUserRole(role);
 			userDao.addUser(user);
+			for(String t: typeList){
+				  Type type = new Type();
+				  type.setName(t);
+				  type.setUser(user);
+				  typeDao.addType(type);
+			 }
 			if (userDao.getUserByName("trieuliem") != null)
 				System.out.println("SUCCESS");
 			else
