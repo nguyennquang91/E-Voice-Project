@@ -13,14 +13,8 @@
    	<h6>Enter user name and password:</h6>  
      
    <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
-   
-         
-       
             <input type='text' name='username' value='' placeholder="username">
-        
-          
             <input type='password' name='password' placeholder="password"/>
-       
        		<button name="submit" value="Submit">Login</button>
        <!-- /login?error=true -->
      <c:if test="${param.error == 'true'}">

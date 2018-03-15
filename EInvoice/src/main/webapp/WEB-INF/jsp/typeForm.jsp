@@ -31,9 +31,7 @@
         <button onclick="cancel()">Cancel</button>
     </div>
 <script>
- 	function cancel() {
-		window.location.href = "${pageContext.request.contextPath}/type";
-	}
+
  </script>
 </body>
 </html>

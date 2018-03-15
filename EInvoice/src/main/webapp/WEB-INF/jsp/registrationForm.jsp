@@ -16,12 +16,11 @@
 </head>
 <body>
 <jsp:include page="_menu.jsp"/>
-
 <div class="form-page">
-Register
- <div class="form">
+<h1>Register</h1>
+<div class="form">
 <div class="bs-example">
-		 <c:out value = "${message}"/>
+		<c:out value = "${message}"/>
      <form:form action="registerUser" method="post" modelAttribute="user">
     		<form:hidden path="id"/>
             <form:hidden path="role.id"/>
@@ -40,21 +39,17 @@ Register
         </div>
         <div class="form-group">
             Expense limit :
-          
             <form:input path="expenseLimit" class="form-control" placeholder="Expense Limit"/>
         </div>
-        
-
         <button type="submit" class="btn btn-primary" value="Save">Create</button>
+        <button type="submit" onclick="cancel()" class="btn btn-primary">Cancel</button>
     </form:form>
 </div>
 </div>
 </div>
-        <button onclick="cancel()">Cancel</button>
+      
 <script>
- 	function cancel() {
-		window.location.href = "${pageContext.request.contextPath}";
-	}
+
  </script>
 </div>
 </body>

@@ -9,38 +9,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Create/Edit User</title>
+<link href="<c:url value="/resources/css/styleForm.css" />" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 </head>
 <body>
 <jsp:include page="_menu.jsp"/>
-    <div align="center">
-        <h1>Create/Edit User</h1>
-        <c:out value = "${message}"/><br>
-        <form:form action="saveUser" method="post" modelAttribute="user">
-        <table>
-            <form:hidden path="id"/>
+<div class="form-page">
+<h1>Edit User</h1>
+ <div class="form">
+<div class="bs-example">
+ 		<c:out value = "${message}"/><br>
+       	<form:form action="saveUser" method="post" modelAttribute="user">
+		   	<form:hidden path="id"/>
             <form:hidden path="role.id"/>
             <form:hidden path="enabled"/>
             <form:hidden path="username"/>
-            <tr>
-                <td>Password:</td>
-                <td><form:input path="password" required="required"/></td>
-            </tr>
-            <tr>
-            	<td>Email:</td>
-            	<td><form:input path="email" required="required"/></td>
-            </tr>
-            <tr>
-            	<td>Expense limit</td>
-            	<td><form:input path="expenseLimit"/></td>
-            </tr>
-            <tr>
-                <td align="center"><input type="submit" value="Save"></td>
-            </tr>
-        </table>
-        </form:form>
-        <button onclick="cancel()">Cancel</button>
-        <a href="${pageContext.request.contextPath}/user/deleteUser" onclick="return confirm('Are you sure?')">Delete this user</a>
-    </div>
+        <div class="form-group">
+            UserName :
+            <form:input path="password" required="required" class="form-control"/>
+        </div>
+        <div class="form-group">
+            Password :
+             <form:input path="password" class="form-control" required="required"/>
+        </div>
+        <div class="form-group">
+            Email :
+            	<form:input path="email" required="required" class="form-control"/>
+        </div>
+        <div class="form-group">
+            Expense limit :
+            <form:input path="expenseLimit" class="form-control"/>
+          
+        </div>
+        <button type="submit" class="btn btn-primary" value="Save">Create</button>
+        <button type="submit" onclick="cancel()" class="btn btn-primary">Cancel</button>
+    </form:form>
+</div>
+</div>
+</div>
  <script>
  	function cancel() {
 		window.location.href = "${pageContext.request.contextPath}/invoice";

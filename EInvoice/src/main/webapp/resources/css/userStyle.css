@@ -13,6 +13,7 @@ table{
 }
 .tbl-header{
   background-color: #024457;
+  color:white;
  }
 .tbl-content{
   height:300px;
@@ -29,7 +30,7 @@ th{
   padding: 20px 15px;
   text-align: left;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 20px;
   color: #fff;
   text-transform: uppercase;
 }
@@ -37,10 +38,10 @@ td{
   padding: 15px;
   text-align: left;
   vertical-align:middle;
-  font-weight: 300;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 15px;
   color: black;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px rgba(255,255,255,0.3);
 }
 
 /*styles */
@@ -56,6 +57,10 @@ body{
 section {
 	 margin: 50px;
  
+}
+button a {
+    color: white;
+    text-decoration: none;
 }
 /* for custom scrollbar for webkit browser*/
 

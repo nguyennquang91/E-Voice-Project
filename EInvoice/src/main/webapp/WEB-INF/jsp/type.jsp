@@ -18,17 +18,16 @@
             <a href="${pageContext.request.contextPath}/type/newType">New Type</a>
         </h3>
         <table border="1">
- 
             <th>ID</th>
         	<th>Type</th>
          	<th>Action</th>
- 
             <c:forEach var="type" items="${typeList}">
                 <tr>
                     <td>${type.id}</td>
                     <td>${type.name}</td>
                     <td><a href="${pageContext.request.contextPath}/type/editType?type_id=${type.id}">Edit</a>
-                        <a href="${pageContext.request.contextPath}/type/deleteType?type_id=${type.id}">Delete</a></td>
+                        <a href="${pageContext.request.contextPath}/type/deleteType?type_id=${type.id}">Delete</a>
+                    </td>
                 </tr>
          </c:forEach>
         </table>
