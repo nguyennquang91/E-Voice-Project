@@ -3,11 +3,9 @@
 <style>
 .aColor{
 	color:rgba(255,255,255,1);
-    
+
 }
-span, a{
-text-decoration: none;
-}
+
 </style>
 <div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;background-color: rgba(76,76,76,1);">
   <c:if test="${!(pageContext.request.userPrincipal.name != null)}">
@@ -19,12 +17,18 @@ text-decoration: none;
 		<a href="${pageContext.request.contextPath}/processUser" class="aColor">Home</a>
 		| &nbsp;
 		 <span class="aColor" >Hi ${pageContext.request.userPrincipal.name}</span>
-		| &nbsp;
+		| &nbsp;>
 		<a href="${pageContext.request.contextPath}/user/editUser" class="aColor">Edit user</a>
+	 	| &nbsp;
 	 </sec:authorize>
-	 | &nbsp;
 	<sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
+
 		<a href="${pageContext.request.contextPath}/type" class="aColor">Type</a>
+		| &nbsp;
+		<a href="${pageContext.request.contextPath}/chart">Chart</a>
+		| &nbsp;
+		<a href="${pageContext.request.contextPath}/report">Report</a>
+	 	| &nbsp;
 	</sec:authorize>
      | &nbsp;
      <a href="${pageContext.request.contextPath}/logout" class="aColor">Logout</a>
