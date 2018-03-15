@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.csc.model.Invoice;
 import com.csc.model.Type;
 import com.csc.model.User;
 import com.csc.service.TypeService;
@@ -95,6 +96,18 @@ public class TypeController {
 		int userId = user.getId();
 		
     	List<Type> typeList = typeServer.getAllByUserId(userId);
+    	
+    	if(type.getId() != 0){
+        	int typeToRemove = -1;
+    		for(Type t:typeList){
+    			if(t.getId() == type.getId()){
+    				typeToRemove = typeList.indexOf(t);
+    			}
+    		}
+    		if(typeToRemove != -1){
+    			typeList.remove(typeToRemove);
+    		}
+    	}
     	
     	for(Type t:typeList){
     		if(t.getName().equalsIgnoreCase(type.getName())){

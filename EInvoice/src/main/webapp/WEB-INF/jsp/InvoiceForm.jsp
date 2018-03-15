@@ -19,8 +19,7 @@
 	<h1>Create/Edit Invoice</h1>
 	<div class="form">
 	<div class="bs-example">
-	<c:out value = "${message}"/>
-
+ 		<p style="color: red;"><c:out value = "${message}"/></p>
      <form:form action="saveInvoice" method="post" modelAttribute="invoice">
     		<form:hidden path="id"/>
             <form:hidden path="user.id"/>
@@ -54,9 +53,10 @@
 				</form:select>
         </div>
         <button type="submit" class="btn btn-primary" value="Save">Save</button>
+        <input type="button" value="Cancel"  onclick="cancel()" class="btn btn-primary"/>
     </form:form>
     	<br>
-     	<input type="button" value="Cancel"  onclick="cancel()" class="btn btn-primary"/>
+     	
 </div>
 </div>
 </div>

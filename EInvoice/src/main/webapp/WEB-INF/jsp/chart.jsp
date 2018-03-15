@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Chart</title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script type="text/javascript">
  window.onload = function () {
 	 var dps = [[]];
@@ -20,6 +21,7 @@
 			},
 			axisY: {
 				title: "Money",
+			
 				suffix: "vnd"
 			},
 			data: [{

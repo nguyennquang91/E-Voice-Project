@@ -101,6 +101,18 @@ public class InvoiceController {
 		
     	List<Invoice> invoiceList = invoiceServer.getAllByUserId(userId);
     	
+    	if(invoice.getId() != 0){
+        	int invoiceToRemove = -1;
+    		for(Invoice i:invoiceList){
+    			if(i.getId() == invoice.getId()){
+    				invoiceToRemove = invoiceList.indexOf(i);
+    			}
+    		}
+    		if(invoiceToRemove != -1){
+    			invoiceList.remove(invoiceToRemove);
+    		}
+    	}
+    	
     	for(Invoice i:invoiceList){
     		if(i.getType().getId()==invoice.getType().getId() && i.getMonth().getId()==invoice.getMonth().getId()
     				&& i.getYear().getId()==invoice.getYear().getId()){

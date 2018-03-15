@@ -20,7 +20,7 @@
 <h1>Edit User</h1>
  <div class="form">
 <div class="bs-example">
- 		<c:out value = "${message}"/><br>
+ 		<p style="color: red;"><c:out value = "${message}"/></p>
        	<form:form action="saveUser" method="post" modelAttribute="user">
 		   	<form:hidden path="id"/>
             <form:hidden path="role.id"/>
@@ -29,7 +29,7 @@
         
         <div class="form-group">
             Password :
-             <form:input path="password" class="form-control" required="required"/>
+             <form:password path="password" class="form-control" required="required"/>
         </div>
         <div class="form-group">
             Email :
@@ -40,17 +40,17 @@
             <form:input path="expenseLimit" class="form-control"/>
           
         </div>
-        <button type="submit" class="btn btn-primary" value="Save">Create</button>
-        
+        <button type="submit" class="btn btn-primary" value="Save">Save</button>
+        <input type="button" value="Cancel"  onclick="cancel()" class="btn btn-primary"/>
     </form:form>
-    <br>
-    <input type="button" onclick="cancel()" class="btn btn-primary" value="Cancel"/>
+    <br><br>
+    <a class="btn btn-primary" href="${pageContext.request.contextPath}/user/deleteUser" onclick="return confirm('Are you sure?')">Delete this user</a>
 </div>
 </div>
 </div>
  <script>
  	function cancel() {
-		window.location.href = "${pageContext.request.contextPath}/invoice";
+		window.location.href = "${pageContext.request.contextPath}/processUser";
 	}
  </script>
 </body>

@@ -20,7 +20,7 @@
 <h1>Register</h1>
 <div class="form">
 <div class="bs-example">
-		<c:out value = "${message}"/>
+ 		<p style="color: red;"><c:out value = "${message}"/></p>
      <form:form action="registerUser" method="post" modelAttribute="user">
     		<form:hidden path="id"/>
             <form:hidden path="role.id"/>
@@ -31,21 +31,19 @@
         </div>
         <div class="form-group">
             Password :
-             <form:input path="password" class="form-control" placeholder="Password"/>
+             <form:password required="required" path="password" class="form-control" placeholder="Password"/>
         </div>
         <div class="form-group">
             Email :
-             <form:input path="email" class="form-control" placeholder="Email"/>
+             <form:input required="required" path="email" class="form-control" placeholder="Email"/>
         </div>
         <div class="form-group">
             Expense limit :
             <form:input path="expenseLimit" class="form-control" placeholder="Expense Limit"/>
         </div>
         <button type="submit" class="btn btn-primary" value="Save">Create</button>
-        
+        <input type="button" value="Cancel"  onclick="cancel()" class="btn btn-primary"/>
     </form:form>
-    </br>
-    <input type="button" value="Cancel" onclick="cancel()" class="btn btn-primary" />
 </div>
 </div>
 </div>

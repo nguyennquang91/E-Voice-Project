@@ -10,18 +10,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="<c:url value="/resources/css/userStyle.css" />" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Invoice Management Screen</title>
 </head>
 <body>
 <jsp:include page="_menu.jsp"/>
 <section>
-		<div align="center">		
+		<div align="center" class="form-group">		
 	        <h1>Invoice List</h1>
-	        <h3>
-	            <a href="${pageContext.request.contextPath}/invoice/newInvoice">New Invoice</a>
-	        </h3>
-	        <label>Search: </label>
-	        <input type="text" id="search" name="search"><br><br>	
+	        <a id="addInvoice" href="${pageContext.request.contextPath}/invoice/newInvoice" class="btn btn-info btn-lg">
+	          New Invoice
+	        </a>
+	        
+	        <input type="text" id="search" class="form-control" name="search" placeholder="Search..."><br><br>	
         </div>
          <div class="tbl-header">
 		    <table cellpadding="0" cellspacing="0" border="0">
@@ -47,8 +48,14 @@
 	                    <td>${invoice.money}</td>
 	                    <td>${invoice.vat}</td>
 	                    <td>${invoice.month.name}<span>/</span>${invoice.year.value}</td>
-	                    <td><button  class="btn-info" ><a href="${pageContext.request.contextPath}/invoice/editInvoice?invoice_id=${invoice.id}">Edit</a></button>
-                    		<button  class="btn-danger"><a href="${pageContext.request.contextPath}/invoice/deleteInvoice?invoice_id=${invoice.id}">Delete</a></button>
+	                    <td>
+	                    <a id="edInvoice" href="${pageContext.request.contextPath}/invoice/editInvoice?invoice_id=${invoice.id}" class="btn btn-info btn-lg">
+				          Edit 
+				        </a>
+				        <a id="edInvoice" href="${pageContext.request.contextPath}/invoice/deleteInvoice?invoice_id=${invoice.id}" class="btn btn-danger btn-lg">
+				           Delete 
+				        </a>
+	                    
 	                </tr>
          		</c:forEach>
          	</tbody>

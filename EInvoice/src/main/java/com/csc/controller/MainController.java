@@ -42,11 +42,6 @@ public class MainController {
    public String loginPage(ModelAndView model) {
        return "loginPage";
    }
- 
-   @RequestMapping(value="/pagination")
-   public String pagination(){
-	   return "paginationtest";
-   }
    
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(ModelAndView model) {

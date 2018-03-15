@@ -3,7 +3,12 @@
 <style>
 .aColor{
 	color:rgba(255,255,255,1);
-
+	text-decoration:none;
+	font-weight: bold;
+}
+.aColor:hover {
+	color: #ff7733;
+	text-decoration:none;
 }
 
 </style>
@@ -16,8 +21,8 @@
   	<sec:authorize access="isAuthenticated()">
 		<a href="${pageContext.request.contextPath}/processUser" class="aColor">Home</a>
 		| &nbsp;
-		 <span class="aColor" >Hi ${pageContext.request.userPrincipal.name}</span>
-		| &nbsp;>
+		 <b><span style="color: #e6ac00;">Hi ${pageContext.request.userPrincipal.name}</span></b>
+		| &nbsp;
 		<a href="${pageContext.request.contextPath}/user/editUser" class="aColor">Edit user</a>
 	 	| &nbsp;
 	 </sec:authorize>
@@ -25,12 +30,11 @@
 
 		<a href="${pageContext.request.contextPath}/type" class="aColor">Type</a>
 		| &nbsp;
-		<a href="${pageContext.request.contextPath}/chart">Chart</a>
+		<a href="${pageContext.request.contextPath}/chart" class="aColor">Chart</a>
 		| &nbsp;
-		<a href="${pageContext.request.contextPath}/report">Report</a>
+		<a href="${pageContext.request.contextPath}/report" class="aColor">Report</a>
 	 	| &nbsp;
 	</sec:authorize>
-     | &nbsp;
      <a href="${pageContext.request.contextPath}/logout" class="aColor">Logout</a>
   </c:if>
 </div>
