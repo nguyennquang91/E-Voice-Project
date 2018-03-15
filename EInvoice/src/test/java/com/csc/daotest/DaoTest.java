@@ -52,7 +52,7 @@ public class DaoTest {
 		}
 	}
 
-	// @Test
+	//@Test
 	public void testAddUser() {
 		try {
 			UserRole role = new UserRole();
