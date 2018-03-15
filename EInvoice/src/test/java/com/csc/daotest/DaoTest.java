@@ -63,10 +63,10 @@ public class DaoTest {
 			String[] typeList = { "Electric", "Water", "Telephone", "Internet" };
 			UserRole role = new UserRole();
 			User user = new User();
-			role.setUsername("noname");
+			role.setUsername("quang");
 			role.setRole("ROLE_USER");
-			user.setUsername("noname");
-			user.setEmail("noname@gmail.com");
+			user.setUsername("qunag");
+			user.setEmail("quang@gmail.com");
 			user.setEnabled(1);
 			user.setPassword("qwert");
 			user.setExpenseLimit(0);
@@ -89,10 +89,11 @@ public class DaoTest {
 		}
 	}
 
-	// @Test
+	//@Test
 	public void testDeleteUser() {
 		try {
-			userDao.deleteUser(16);
+			userDao.deleteUser(14);
+			Assert.assertNull(userDao.getUser(14));
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail();
